@@ -1,0 +1,43 @@
+
+<div class="row">
+	<div class="col-md-4 col-xs-12">
+		<a href="/index.php/Index/index?type=post" class="btn-xs btn-info">最新发帖</a>
+		<a href="/index.php/Index/index?type=repost" class="btn-xs btn-info">最新回复</a>
+	</div>
+	<form action="/index.php/Index/search" method="get" >
+	<div class="col-md-4 col-md-offset-8 col-xs-12">
+		<div class="input-group">
+				<input type="text" name="title" class="form-control" placeholder="主题名称">
+				<span class="input-group-btn">
+					<input type="SUBMIT" class="btn btn-default" VALUE="搜索">
+				</span>
+		</div>
+	</div>
+	</form>
+</div>
+<br>
+<div class="row">
+	<table class="table table-striped">
+		<tr class="info">
+			<th>主题</th>
+			<th class="text-right">发帖时间 | 回复/查看</th>
+		</tr>
+		<volist name="post" id="p">
+			<tr>
+				<td>
+					<small><a href="/index.php/Index/board?bid={$p['bid']}" class="text-warning">[{$p['bid']|bidname}]</a></small><a href="/index.php/Index/post?pid={$p[pid]}">{$p['title']}</a>
+				</td>
+				<td class="text-right">
+					{$p['time']|date="Y-m-d H:i",###} |
+					<span class="label label-danger"> {$p['view']}/{$p['num']}
+					</span>
+				</td>
+			</tr>
+		</volist>
+		<tr>
+			<td class="text-right">{$show}</td>
+			<td></td>
+		</tr>
+	</table>
+</div>
+

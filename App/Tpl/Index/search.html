@@ -1,0 +1,29 @@
+<div class="row">
+	<div class="col-md-4 col-md-offset-2 col-xs-12" style="margin-top:50px">
+		<form action="/index.php/Index/search" method="get" >
+		<div class="input-group">
+				<input type="text" name="title" class="form-control" placeholder="主题名称">
+				<span class="input-group-btn">
+					<input type="SUBMIT" class="btn btn-default" VALUE="搜索">
+				</span>
+		</div>
+		</form>
+	</div>
+</div>
+<div class="row">
+	<table class="table">
+		<volist name="post" id="p">
+				<tr>
+					<td><h3>
+						<small><a href="/index.php/Index/board?bid={$p['bid']}" class="text-warning">[{$p['bid']|bidname}]</a></small><a href="/index.php/Index/post?pid={$p[pid]}">{$p['title']}</a>
+					</td></h3>
+				<td class="text-right">
+					{$p['time']|date="Y-m-d H:i",###} |
+					<span class="label label-danger"> {$p['view']}/{$p['num']}
+					</span>
+				</td>
+				
+				</tr>
+		</volist>
+	</table>
+</div>

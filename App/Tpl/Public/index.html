@@ -1,0 +1,37 @@
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="/src/css/bootstrap.min.css">
+	<script src="/src/js/jquery.js"></script>
+	<script src="/src/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+	<?php
+		$boards=allboard();
+	?>
+	<div class="container">
+		<ul class="nav nav-tabs" id="nav">
+			<li><a href="/">Home</a></li>
+			<volist name="boards" id="boa">
+				<li><a href="/index.php/Index/board?bid={$boa[bid]}">{$boa[name]}</a></li>
+			</volist>
+			<A HREF="/index.php/User"><img src="{$_SESSION['uid']|uidimage}" class="img-circle" width="45px">
+				<?php 
+					$remindinfo=D("Remind")->num();
+					if($remindinfo>0){
+				 ?>
+				<span class="label label-danger">{$remindinfo}</span>
+
+				<?php }?>
+
+			</A>
+
+		</ul>
+
+
+		{__CONTENT__}
+
+	</div>
+</body>
+
+

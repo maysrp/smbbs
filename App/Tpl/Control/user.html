@@ -1,0 +1,78 @@
+<div class="row" style="border:solid 2px #F3F3F3;margin:20px;border-radius:5px">
+	<p >
+		<img src="{$_SESSION['uid']|uidimage}" width="88px" style="border:solid 3px #FFFFFF;margin:10px;">
+	</p>
+	<div class="row" style="margin:10px">
+		<p  >
+		<h3 >{$_SESSION['uid']|uidname}</h3>
+		</p>
+		<p >
+		上次登入IP:
+		{$_SESSION['uid']|uidlastip}
+		</p>
+		</p>
+		上次登入时间:	
+		{$_SESSION['uid']|uidlasttime|date="Y-m-d H:i:s",###}
+		</p>
+		<p >
+			<button type='button' class="btn btn-info btn-sm" data-toggle="modal" data-target="#joininfo">历史登入信息</button>
+			<div class="modal fade" id="joininfo" >
+				<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<H3 class="text-muted">历史登入信息</H3>
+					</div>
+					<div class="modal-title">
+						<h3 > 用户名:{$_SESSION['uid']|uidname}</h3>
+
+					</div>
+					<?php  $joininfo=uidjoininfo($_SESSION['uid']) ?>
+					<div class="modal-body">
+						<table class="table table-striped">
+							<tr>
+								<th>Ip</th>
+								<th>Time</th>
+							</tr>
+						<volist name="joininfo" id="info">
+							<tr>
+								<td>{$info['lastip']}</td>
+								<td>{$info['lasttime']|date="Y-m-d H:i:s",###}</td>
+							</tr>
+						</volist>
+						</table>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-success" data-dismiss="modal">OK!(。・`ω´・)</button>
+
+					</div>
+				</div>
+				</div>
+
+			</div>
+		</p>
+		<p>
+			<button type='button' class="btn btn-danger btn-sm" data-toggle="modal" data-target="#logout">离开</button>
+			<div class="modal fade" id="logout" >
+				<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<H3 class="text-muted">确定离开？</H3>
+					</div>
+					<div class="modal-body">
+						<b><p class="text-danger">点击“走人”后，将注销会话ID，以及本地验证，下次需要输入密码才能登入。</p></b>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-success" data-dismiss="modal">算了</button>
+						<a href="/index.php/User/logout" class="btn btn-danger">走人(/= _ =)/~┴┴</a>
+
+					</div>
+				</div>
+				</div>
+
+			</div>
+		</p>
+	</div>
+
+
+
+</div>

@@ -1,0 +1,71 @@
+<br>
+<div class="col-md-3">
+<div class="row">
+	<div class="panel panel-primary">
+		<div class="panel-heading"><h3>板块管理</h3></div>
+		<table class="table">
+			<?php
+				$board=allboard();
+			?>
+			<volist name="board" id="bo">
+				<tr>
+					<td><h4>{$bo['name']}</h4></td>
+					<td class="text-right">
+						<a href="/admin.php/Board/edit?bid={$bo[bid]}" class="btn btn-primary">修改</a>
+						<a href="/admin.php/Board/del?bid={$bo[bid]}" class="btn btn-danger">删除</a>
+					</td>
+				</tr>
+			</volist>
+			<tr>
+				<td></td>
+				<td class="text-right">
+					<a href="/admin.php/Board/add" class="btn btn-success">添加</a>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+</div>
+<div class="col-md-8 col-md-offset-1">
+	<div class="row">
+		<div class="panel panel-warning">
+			<div class="panel-heading"><h4>用户管理</h4></div>
+			<table class="table">
+				<tr>
+					<td><a href="/admin.php/User/alluser" class="btn btn-primary">管理用户</a></td>
+					<td><a href="/admin.php/User/adduser" class="btn btn-success">添加用户</a></td>
+					<td ><div class="col-xs-8 col-xs-offset-4">
+						<form method="post" action="/admin.php/User/search">
+							<div class="input-group">
+								<input type="text" name="name" placeholder="用户名" class="form-control">
+								<div class="input-group-btn">
+									<button class="btn btn-default">搜索 <span class="glyphicon glyphicon-search"></span></button>
+								</div>
+							</div>
+						</form>
+					</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="panel panel-success">
+			<div class="panel-heading"><h4>内容管理</h4></div>
+			<table class="table">
+				<tr>
+					<td>
+						<?php $board=allboard() ?>
+						<h3>
+							<volist name="board" id="bo">
+								<a href="/admin.php/Post/board?bid={$bo['bid']}" class="btn btn-default">{$bo['bid']|bidname}</a>
+							</volist>
+						</h3>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+</div>

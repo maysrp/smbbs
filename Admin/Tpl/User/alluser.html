@@ -1,0 +1,28 @@
+<br>
+<span class="col-md-1 col-md-offset-10"><a href="/admin.php/Admin" class="btn btn-default">返回</a></span>
+<hr>
+<div class="row">
+	<div class="">
+		<div class="panel panel-primary">
+			<div class="panel-heading">所有用户</div>
+			<table class="table">
+				<tr>
+					<th>头像</th>
+					<th>用户名</th>
+					<th class="text-right"> 加入时间 | 主题数 | 回复数</th>
+				</tr>
+			<volist name="user" id="user">
+				<tr>
+					<td><img src="{$user["uid"]|uidimage}" width="60px" class="img-circle" ></td>
+					<td>
+						<a href="/admin.php/User/uid?uid={$user['uid']}">{$user['name']}</a>
+					</td>
+					<td class="text-right">
+						{$user['jointime']|date="Y-m-d H:i",###} | <span class="label label-primary">{$user['pnum']}</span> | <span class="label label-info">{$user['rnum']}</span>
+					</td>	
+				</tr>
+			</volist>
+			</table>
+		</div>
+	</div>
+</div>

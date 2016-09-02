@@ -1,0 +1,34 @@
+<div class="row">
+	<h2><small><span class="glyphicon glyphicon-list"></span> </small>{$Think.get.bid|bidname}</h2>
+	<?php $board=allboard() ?>
+	<h3>
+		<volist name="board" id="bo">
+			<a href="/admin.php/Post/board?bid={$bo['bid']}" class="btn btn-default">{$bo['bid']|bidname}</a>
+		</volist>
+	</h3>
+	<a href="/admin.php/Admin" class="btn btn-info">面板</a>
+	<hr>
+
+</div>
+<div class="row">
+	<table class="table table-striped">
+		<tr class="info">
+			<th>主题</th>
+			<th class="text-right">发帖时间 | 回复/查看</th>
+		</tr>
+		<volist name="post" id="p">
+			<tr>
+				<td>
+					<a href="/admin.php/Post/post?pid={$p[pid]}">{$p['title']}</a>
+				</td>
+				<td class="text-right">
+					<a href="/admin.php/Post/delpost?pid={$p['pid']}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+					{$p['time']|date="Y-m-d H:i",###} |
+					<span class="label label-default"> {$p['view']}/{$p['num']}
+					</span>
+				</td>
+			</tr>
+		</volist>
+	</table>
+
+</div>

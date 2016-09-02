@@ -1,0 +1,56 @@
+<div class="row">
+	<div class="col-md-3">
+		<img src="{$info['uid']|uidimage}" width="60%" class="img-circle">
+	</div>
+	<div class="col-md-6">
+		<p>
+			<h3>{$info['uid']|uidname}</h3>
+		</p>
+		<p>
+			<span class="text-warning"> 加入时间：<cite>{$info['time']|date="Y-m-d",###}</cite></span>
+
+			<span class="text-warning"> 最后登入：<cite>{$info['lasttime']|date="Y-m-d",###}</cite></span>
+		</p>
+		<p>
+			<span class="text-warning"> 加入IP：<cite>{$info['joinip']}</cite></span>
+
+			<span class="text-warning"> 最后IP：<cite>{$info['lastip']}</cite></span>
+
+		</p>
+		<p>
+			<span class="text-warning"> 发帖数：<cite>{$info['pnum']}</cite></span>
+			
+			<span class="text-warning"> 回贴数：<cite>{$info['rnum']}</cite></span>
+
+		</p>
+
+	</div>
+</div>
+<div class="row">
+	<table class="table table-striped">
+		<tr class="info">
+			<th  class="text-center">
+				<span class="glyphicon glyphicon-th-list"></span> 板块
+			</th>
+			<th>
+				<span class="glyphicon glyphicon-align-justify"></span> 帖子
+			</th>
+			<th class="text-right">
+				<span class="glyphicon glyphicon-time"></span> 发布时间
+			</th>
+		</tr>
+		<volist name="post" id="p">
+			<tr>
+				<td class="text-center">
+					<span class="text-success"><B>{$p['bid']|bidname}</B></span>
+				</td>
+				<td class="text-left">
+					<a href="/index.php/Index/post?pid={$p['pid']}">{$p['title']}</a>
+				</td>
+				<td class="text-right">
+					{$p['time']|date="Y-m-d H:i",###}
+				</td>
+			</tr>
+		</volist>
+	</table>
+</div>

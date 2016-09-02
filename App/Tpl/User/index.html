@@ -1,0 +1,94 @@
+<div class="hide">
+	<form action="" method="post" enctype="multipart/form-data">
+	<input type="file" name="image" id="up">
+	<button>dccc</button>
+</form>
+
+</div>
+<div class="row">
+	<div class="col-md-3">
+		<img src="{$info['uid']|uidimage}" width="60%" class="img-circle" id="image">
+	</div>
+	<div class="col-md-6">
+		<p>
+			<h3>{$info['uid']|uidname}</h3>
+		</p>
+		<p>
+			<h4><a href="/index.php/Remind/index"><b class="text-danger">未读消息 </b><span class="label label-danger"><?php echo D('Remind')->num() ?></span></a></h4>
+		</p>
+		<p>
+			<a href="/index.php/User/change" class="btn btn-warning">修改密码</a> <a href="/index.php/User/logout" class="btn btn-info">离开</a>
+		</p>
+		<p>
+			<span class="text-warning"> 加入时间：<cite>{$info['time']|date="Y-m-d",###}</cite></span>
+
+			<span class="text-warning"> 最后登入：<cite>{$info['lasttime']|date="Y-m-d",###}</cite></span>
+		</p>
+		<p>
+			<span class="text-warning"> 加入IP：<cite>{$info['joinip']}</cite></span>
+
+			<span class="text-warning"> 最后IP：<cite>{$info['lastip']}</cite></span>
+
+		</p>
+		<p>
+			<span class="text-warning"> 发帖数：<cite>{$info['pnum']}</cite></span>
+			
+			<span class="text-warning"> 回贴数：<cite>{$info['rnum']}</cite></span>
+
+		</p>
+
+	</div>
+</div>
+<div class="row">
+	<table class="table table-striped">
+		<tr class="info">
+			<th  class="text-center">
+				<span class="glyphicon glyphicon-th-list"></span> 板块
+			</th>
+			<th>
+				<span class="glyphicon glyphicon-align-justify"></span> 帖子
+			</th>
+			<th class="text-right">
+				<span class="glyphicon glyphicon-time"></span> 发布时间
+			</th>
+		</tr>
+		<volist name="post" id="p">
+			<tr>
+				<td class="text-center">
+					<span class="text-success"><B>{$p['bid']|bidname}</B></span>
+				</td>
+				<td class="text-left">
+					<a href="/index.php/Index/post?pid={$p['pid']}">{$p['title']}</a>
+					<a href="/index.php/Post/edit?pid={$p['pid']}"><span class="glyphicon glyphicon-edit"></span></a>
+				</td>
+				<td class="text-right">
+					<a href="/index.php/Post/delpost?pid={$p['pid']}" class="btn btn-danger">删除</a>
+					{$p['time']|date="Y-m-d H:i",###}
+				</td>
+			</tr>
+		</volist>
+	</table>
+</div>
+<script type="text/javascript">
+	$("#image").click(function(){
+		$("#up").click();
+	})
+
+	$("#up").change(function(){
+		file=this.files[0];
+		var fd=new FormData();
+		fd.append("image",file);
+		$.ajax({
+			url:"/index.php/User/image",
+			type:"POST",
+			data:fd,
+			processData: false,  // 告诉jQuery不要去处理发送的数据
+  			contentType: false,   // 告诉jQuery不要去设置Content-Type请求头
+			success:function(data){
+				history.go(0);
+			}
+		})
+		
+	})
+
+</script>

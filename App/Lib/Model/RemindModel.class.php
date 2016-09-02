@@ -1,0 +1,56 @@
+<?php
+	class RemindModel extends Model{
+		function remind($info){
+			if($_SESSION['uid']==$info['uid']){
+				return;
+			}
+			$in['uid']=$info['uid'];//接收消息的人
+			$in['time']=time();
+			$in['type']=$info['type'];
+			$in['xid']=$info['xid'];
+			$in['sid']=$_SESSION['uid'];
+			if($in['type']=="post"){
+				$title=D('Post')->find($in['xid']);
+				$text=uidname($in['sid'])."回复了您的主题《".$title['title']."》。";
+				$in['info']=$text;
+			}elseif ($in['type']=="repost") {
+				$reinfo=D('Repost')->find($in['xid']);
+				$title=D('Post')->find($reinfo['pid']);
+				$text=uidname($in['sid'])."在主题《".$title['title']."》中回复了您的回复";
+				$in['info']=$text;
+			}
+			$this->add($in);
+
+		}
+		function read($rid){
+			$info=$this->find($rid);
+			if($info){
+				if($info['uid']==$_SESSION['uid']){
+					$this->where("rid='".$rid."'")->setField("isread",1);
+					if($info['type']=='post'){
+						return "./index.php/Index/post?pid=".$info['xid'];
+					}elseif($info['type']=='repost'){
+						return "./index.php/Index/re?rid=".$info['xid'];
+					}
+
+					//return $info;
+				}else{
+					//ERROR 权限不服
+				}
+			}else{
+				//无此消息
+			}
+		}
+		function unread(){//返回所有未读消息
+			$uid=$_SESSION['uid'];
+			$un=$this->where("uid='".$uid."' AND isread=0")->select();
+			return $un;
+		}
+		function num(){//返回未读数目
+			$uid=$_SESSION['uid'];
+			$un=$this->where("uid='".$uid."' AND isread=0")->count();
+			return $un;
+
+		}
+
+	}
