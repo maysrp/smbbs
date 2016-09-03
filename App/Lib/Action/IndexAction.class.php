@@ -34,12 +34,23 @@ class IndexAction extends Action {
   			return;
     	}
     	$reall=D('Repost')->reall($pid);
+        $count=count($reall);
+        import('ORG.Util.Page');
+        $Page=new Page($count,25);
+        $Page->setConfig('header',"条评论");
+        if($_GET['p']<1){
+             $_GET['p']=1;
+        }else{
+               $_GET['p']=(int)$_GET['p'];//
+        }
+        $list=array_slice($reall, 25*($_GET['p']-1),25);
+        $show=$Page->show();
+        $this->assign('page',$show);
         D('Post')->where("pid='".$pid."'")->setInc("view","1");
-    	$this->assign("repost",$reall);
+    	$this->assign("repost",$list);
     	$this->assign("post",$ex);
     	$this->display();
     }
-
     /* 需要通知*/
     function repost(){
     	$pid=(int)$_GET['pid'];
