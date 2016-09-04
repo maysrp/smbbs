@@ -15,4 +15,11 @@
 				$this->error("不存在该消息！");
 			}
 		}
+		function readall(){
+			$ar=D('Remind')->all();
+			foreach ($ar as $key => $value) {
+				D('Remind')->reone($value['eid']);
+			}
+			$this->success("全部设置为已读");
+		}
 	}

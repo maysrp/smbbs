@@ -58,5 +58,16 @@
 			return $un;
 
 		}
+		function all(){
+			$all=$this->where("uid='".$_SESSION['uid']."' AND isread=0")->select();
+			return $all;
+		}
+		function reone($eid){
+			$info=$this->find($eid);
+			if($_SESSION['uid']==$info['uid']){
+				$this->where("eid='".$eid."'")->setField("isread",1);
+			}
+
+		}
 
 	}
