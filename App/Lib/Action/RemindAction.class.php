@@ -2,7 +2,19 @@
 	class RemindAction extends Action{
 		function index(){
 			$all=D('Remind')->unread();
-			$this->assign("remind",$all);
+			$count=count($all);
+			import("ORG.Util.Page");
+			$Page=new Page($count,10);
+			if ($_GET['p']<1) {
+				$_GET['p']=1;
+			}else{
+				$_GET=(int)$_GET['p']/10;
+			}
+			$Page->setConfig("header","条消息");
+			$list=array_alice($all,10*($_GET['p']-1),10);
+			$show=$Page->show();
+			$this->assign("page",$page);
+			$this->assign("remind",$list);
 			$this->display();
 		}
 		function read(){
