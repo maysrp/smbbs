@@ -125,4 +125,13 @@
 			}
 			
 		}
+		function infoc(){
+			if($_SESSION['uid']){
+				$info['text']=$_POST['text'];
+				$info['email']=$_POST['email'];
+				$info['date']=$_POST['date'];
+				$in=json_encode($info);
+				D('User')->where("uid='".$_SESSION['uid']."'")->setField("info",$in);
+			}
+		}
 	}
