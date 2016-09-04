@@ -73,6 +73,7 @@ class IndexAction extends Action {
         $rem['xid']=$repost['pid'];
         $con=D('repost')->where("pid='".$repost['pid']."'")->count();
         D('repost')->where("rid='".$rid."'")->setField("lc",$con);
+        $rem['lc']=$con;
 
         D('Remind')->remind($rem);
         D('Post')->retime($repost['pid']);
@@ -109,6 +110,7 @@ class IndexAction extends Action {
             $rem['uid']=$repostuid['uid'];
             $rem['type']="repost";
             $rem['xid']=$xid;
+            $rem['lc']=$con;
             D('Remind')->remind($rem);
             D("Post")->retime($pid);
     		$this->redirect("./index.php/Index/post?pid=$repost[pid]");

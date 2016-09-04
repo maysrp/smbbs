@@ -9,18 +9,18 @@
 			$in['type']=$info['type'];
 			$in['xid']=$info['xid'];
 			$in['sid']=$_SESSION['uid'];
+			$in['lc']=$info['lc'];
 			if($in['type']=="post"){
 				$title=D('Post')->find($in['xid']);
-				$text=uidname($in['sid'])."回复了您的主题《".$title['title']."》。";
-				$in['info']=$text;
+				$text=uidname($in['sid'])."回复了您的主题《".$title['title']."》;<span class=\"text-warning\">第".$in['lc']."楼</span>";
 			}elseif ($in['type']=="repost") {
 				$reinfo=D('Repost')->find($in['xid']);
 				$title=D('Post')->find($reinfo['pid']);
-				$text=uidname($in['sid'])."在主题《".$title['title']."》中回复了您的回复";
-				$in['info']=$text;
+				$text=uidname($in['sid'])."在主题《".$title['title']."》中回复了您的回复;<span class=\"text-warning\">第".$in['lc']."楼</span>";
 			}
-			$this->add($in);
-
+			$eid=$this->add($in);
+			$text="<a href=/index.php/Remind/read?eid=".$eid.">".$text."</a>";
+			$this->where("eid='".$eid."'")->setField("info",$text);
 		}
 		function read($rid){
 			$info=$this->find($rid);
@@ -28,7 +28,13 @@
 				if($info['uid']==$_SESSION['uid']){
 					$this->where("rid='".$rid."'")->setField("isread",1);
 					if($info['type']=='post'){
-						return "./index.php/Index/post?pid=".$info['xid'];
+						if($info['lc']<25){
+							return "./index.php/Index/post?pid=".$info['xid'];
+						}else{
+							$p=$info['lc']/25+1;
+							$p=(int)($p);
+							return "./index.php/Index/post?pid=".$info['xid']."&p=".$p;
+						}
 					}elseif($info['type']=='repost'){
 						return "./index.php/Index/re?rid=".$info['xid'];
 					}

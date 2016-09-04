@@ -3,12 +3,26 @@
 	<div class="row">
 		<h3><a href="/index.php/Index/post?pid={$repost['pid']}">{$repost['pid']|pidname}</a></h3>
 		<hr>
+		<div class="row" >
+			<?php
+				if($repost['lc']<25){
+					$page=1;
+				}else{
+					$page=(int)($repost['lc']/25+1);
+				}
+			?>
+			<p  style="margin:10px">
+				<a href="/index.php/Index/post/pid/{$repost['pid']}/p/{$page}" class="text-danger"> <h3 class="text-center"><small> >>>>>>其他回复<<<<<< <small></h3></a>
+			</p>
+		</div>
+		<hr>
 	</div>
 		<div class="row">
 			<div class="col-md-2">
 				<div AM="userinfo">
-					<h3>{$repost["uid"]|uidname}</h3>
-					<a href="/index.php/Profile/index?uid={$repost["uid"]}"><img src="{$repost["uid"]|uidimage}" width="60%" class="img-circle"></a>
+					<P ><b class="text-muted">第{$repost['lc']}楼</b></P>
+					<h5>{$repost["uid"]|uidname}</h5>
+					<a href="/index.php/Profile/index?uid={$repost["uid"]}"><img src="{$repost["uid"]|uidimage}" width="40%" class="img-circle"></a>
 				</div>
 			</div>
 			<div class="col-md-10">
