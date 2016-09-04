@@ -67,7 +67,10 @@
 			if($_SESSION['uid']==$info['uid']){
 				$this->where("eid='".$eid."'")->setField("isread",1);
 			}
-
+		}
+		function isread(){
+			$all=$this->where("uid='".$_SESSION['uid']."' AND isread=1")->select();
+			return $all;
 		}
 
 	}

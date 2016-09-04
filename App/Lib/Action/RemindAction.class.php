@@ -22,4 +22,9 @@
 			}
 			$this->success("全部设置为已读");
 		}
+    	function isread(){
+        	$isread=D('Remind')->isread();
+        	$this->assign("remind",$isread);
+        	$this->display();
+    	}		
 	}
