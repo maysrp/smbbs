@@ -63,7 +63,7 @@ class IndexAction extends Action {
     	$repost['pid']=$_POST['pid'];
     	$repost['uid']=$_SESSION['uid'];
     	$repost['time']=time();
-    	D('Repost')->add($repost);
+    	$rid=D('Repost')->add($repost);
         D('User')->repostadd();
         D('Post')->where("pid='".$repost['pid']."'")->setInc("num","1");
         //remind
@@ -71,6 +71,9 @@ class IndexAction extends Action {
         $rem['uid']=$postuid['uid'];
         $rem['type']="post";
         $rem['xid']=$repost['pid'];
+        $con=D('repost')->where("pid='".$repost['pid']."'")->count();
+        D('repost')->where("rid='".$rid."'")->setField("lc",$con);
+
         D('Remind')->remind($rem);
         D('Post')->retime($repost['pid']);
         //
@@ -97,6 +100,9 @@ class IndexAction extends Action {
             D('User')->repostadd();
             $pid=$repost['pid'];
             D('Post')->where("pid='".$pid."'")->setInc("num","1");
+            $con=D('repost')->where("pid='".$pid."'")->count();
+            D('repost')->where("rid='".$xid."'")->setField("lc",$con);
+
 
             //remind
             $repostuid=D('Repost')->find($rid);

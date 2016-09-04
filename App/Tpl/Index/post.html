@@ -26,8 +26,9 @@
 	<volist name="repost" id="re" >
 		<div class="row"  style="border-bottom:solid 1px rgb(220,220,220);margin-right:3px;margin-left:3px;background-color:rgb(250,250,250)">
 			<div class="col-md-2 col-xs-2">
+				<p><b class="text-muted">第{$re['lc']}楼</b></p>
 				<div AM="userinfo" class="text-center">
-					<h3>{$re["uid"]|uidname}</h3>
+					<h4>{$re["uid"]|uidname}</h4>
 					<a href="/index.php/Profile/index?uid={$re['uid']}"><img src="{$re["uid"]|uidimage}" width="40%" class="img-circle"></a>
 				</div>
 				<p class="text-center"><i><small>#{$re['rid']}</small></i></p>
