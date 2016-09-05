@@ -23,10 +23,16 @@
 			<th class="text-right">发帖时间 | 回复/查看</th>
 		</tr>
 		<volist name="post" id="p">
-			<tr>
-				<td>
-					<small><a href="/index.php/Index/board?bid={$p['bid']}" class="text-warning">[{$p['bid']|bidname}]</a></small><a href="/index.php/Index/post?pid={$p[pid]}">{$p['title']}</a>
+			<tr class="user_info" AM="{$p[pid]}">
+				<td >
+					<small ><a href="/index.php/Index/board?bid={$p['bid']}" class="text-warning">[{$p['bid']|bidname}]</a></small>{$p['title']}
 				</td>
+				<div id="user_{$p[pid]}" style="width:200px;height:120px;display:none;background-color:#E3E3E3;position:fixed">
+					
+							<img src={$p['uid']|uidimage} width="80px" height="80px" style="margin:10px">
+							<a href="/index.php/Profile/index?uid={$p['uid']}" style="margin:10px">{$p['uid']|uidname}</a>
+					
+				</div>
 				<td class="text-right">
 					{$p['time']|date="Y-m-d H:i",###} |
 					<span class="label label-danger"> {$p['view']}/{$p['num']}
@@ -41,3 +47,20 @@
 	</table>
 </div>
 
+<script type="text/javascript">
+	$(".user_info").mouseover(function(e){
+		var am=$(this).attr("AM");
+		$("#user_"+am).css("display","inline");
+		$("#user_"+am).css("top",e.clientY);
+		$("#user_"+am).css("left",e.clientX);
+	})
+	$(".user_info").mouseout(function(e){
+		var am=$(this).attr("AM");
+		$("#user_"+am).css("display","none");
+	})
+	$(".user_info").click(function(){
+		var am=$(this).attr("AM");
+		window.location.href="/index.php/Index/post/pid/"+am;
+
+	})
+</script>
