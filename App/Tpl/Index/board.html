@@ -28,9 +28,9 @@
 			<th class="text-right">发帖时间 | 回复/查看</th>
 		</tr>
 		<volist name="post" id="p">
-			<tr class="user_info" AM="{$p[pid]}">
-				<td>
-					{$p['title']}
+			<tr>
+				<td >
+					<span  class="user_info" AM="{$p[pid]}">{$p['title']}</span>
 				</td>
 				<div id="user_{$p[pid]}" style="width:200px;height:120px;display:none;background-color:#E3E3E3;position:fixed">
 					
