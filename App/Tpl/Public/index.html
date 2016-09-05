@@ -5,15 +5,16 @@
 	<script src="/src/js/bootstrap.min.js"></script>
 
 </head>
+<span id="nav_active" AM={$_GET['bid']}></span>
 <body>
 	<?php
 		$boards=allboard();
 	?>
 	<div class="container">
-		<ul class="nav nav-tabs" id="nav">
-			<li><a href="/">Home</a></li>
+		<ul class="nav nav-pills" id="nav">
+			<li id="n_home"><a href="/">Home</a></li>
 			<volist name="boards" id="boa">
-				<li><a href="/index.php/Index/board?bid={$boa[bid]}">{$boa[name]}</a></li>
+				<li id="n_{$boa[bid]}"><a href="/index.php/Index/board?bid={$boa[bid]}">{$boa[name]}</a></li>
 			</volist>
 			<A HREF="/index.php/User"><img src="{$_SESSION['uid']|uidimage}" class="img-circle" width="45px">
 				<?php 
@@ -33,5 +34,13 @@
 
 	</div>
 </body>
+<script type="text/javascript">
+	var n_id=$("#nav_active").attr("AM");
+	$("#n_"+n_id).addClass("active");
+	if(!n_id){
+		$("#n_home").addClass("active");
+	}
+
+</script>
 
 
