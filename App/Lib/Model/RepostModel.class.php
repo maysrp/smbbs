@@ -26,7 +26,8 @@
 			}
 		}
 		function reall($pid){//取出相关回复
-				return $this->where("pid='".$pid."'")->select();
+				$ret=$this->where("pid='".$pid."'")->order("lc")->select();
+				return $ret;
 		}
 		function rere($re){//回复 回帖
 

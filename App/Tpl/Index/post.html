@@ -6,9 +6,7 @@
 </script>
 
 <style type="text/css">
-div{ word-wrap: break-word; word-break: normal; }
-pre{ word-wrap: break-word; word-break: normal; }
-
+	img {max-width: 600px}
 </style>
 
 <script type="text/javascript" src="/plugins/ue/ueditor.config.js"></script>  
@@ -40,17 +38,19 @@ pre{ word-wrap: break-word; word-break: normal; }
 	<div class="row" style="background-color:#FFFFFF;border-radius:8px;padding:30px;margin-bottom:10px">
 	<volist name="repost" id="re" >
 		<div class="row"  >
-			<div class="col-md-2 col-xs-2">
-				<p><b class="text-muted">第{$re['lc']}楼</b></p>
-				<div AM="userinfo" class="text-center">
-					<h5>{$re["uid"]|uidname}</h5>
-					<a href="/index.php/Profile/index?uid={$re['uid']}"><img src="{$re["uid"]|uidimage}" width="50px" class="img-circle"></a>
-				</div>
-				<p class="text-center"><i><small>#{$re['rid']}</small></i></p>
+			<div class="row" style="margin-left:10px">
+				<p class="row"><b class="text-muted">第{$re['lc']}楼</b></p>
+				<p class="row" AM="userinfo">
+					<span class="col-xs-1"><a href="/index.php/Profile/index?uid={$re['uid']}"><img src="{$re["uid"]|uidimage}" width="50px" class="img-circle"></a></span>
+					<span class="col-xs-3">
+						<span class="row"><a href="/index.php/Profile/index?uid={$re['uid']}">{$re["uid"]|uidname}</a></span> 
+						<i class="row"><small>#{$re['rid']} /发布于 {$re['time']|date="Y-m-d H:i",###}</small></i>
+					</span>
+				</p>
 			</div>
-			<div class="col-md-10 col-xs-10" style="padding-left:25px;margin-top:15px">
+			<div class="row" style="padding-left:25px;margin-top:15px">
 				{$re['text']}
-				<p class="text-right">
+				<p class="text-right" style="margin:10px">
 					<a href="/index.php/Index/rere?rid={$re['rid']}" class="btn btn-default btn-sm">回复</a>
 				</p>
 			</div>
