@@ -1,35 +1,50 @@
+<?php //uid recent Post 5
+	$recent=uidrecent($post['uid']);
+?>
+<script type="text/javascript">
+	$("body").css("background-color","#F1F1F1");
+</script>
+
+<style type="text/css">
+div{ word-wrap: break-word; word-break: normal; }
+pre{ word-wrap: break-word; word-break: normal; }
+
+</style>
+
 <script type="text/javascript" src="/plugins/ue/ueditor.config.js"></script>  
 <script type="text/javascript" src="/plugins/ue/ueditor.all.js"></script> 
-<div class="row">
-	<h2><small><span class="glyphicon glyphicon-list"></span> </small>{$Think.get.bid|bidname}</h2>
-	<hr>
-</div>
-<div class="row">
-	<div class="row" style="border:solid 1px rgb(220,220,220);border-radius:8px;margin-bottom:25px;">
-		<div class="col-md-2 col-xs-2" >
-			<div AM="userinfo" class="text-center">
-				<h3>{$post["uid"]|uidname}</h3>
-				<a href="/index.php/Profile/index?uid={$post['uid']}"><img src="{$post["uid"]|uidimage}" width="60%" class="img-circle"></a>
-			</div>
-		</div>
-	<div class="col-md-10 col-xs-10" style="border-left:solid 1px rgb(220,220,220);padding-left:25px ">
+
+<div class="col-md-8" style="margin-top:10px" >
+
+	<div class="row" style="background-color:#FFFFFF;border-radius:3px;padding:5px;margin-bottom:10px">
+		<span><a href="/index.php/Index">Home</a>/<a href="/index.php/Index/board/bid/{$Think.get.bid}">{$Think.get.bid|bidname}</a></span>
+	</div>
+
+	<div class="row" style="background-color:#FFFFFF;border-radius:8px;padding:30px;margin-bottom:10px">
 		<div class="row">
-			<h3>{$post['title']}</h3>
+			<div class="col-md-1" style="margin-top:20px;">
+				<img src="{$post['uid']|uidimage}" width="50px" class="img-circle">
+			</div>
+			<div class="col-md-9" style="margin:5px;">
+				<h3>{$post['title']}</h3>
+				<p class="text-muted"><small>{$post['uid']|uidname} / 发布于{$post['time']|date="Y-m-d H:i",###} / 围观{$post[view]} / 回复{$post['num']} </small></p>
+			</div>			
 		</div>
+		<hr>
 		<div class="row">
 			{$post['text']}
 
 		</div>
 	</div>
-	</div>
-	<div class="row" style="border:1px solid rgb(220,220,220);border-radius:8px">
+
+	<div class="row" style="background-color:#FFFFFF;border-radius:8px;padding:30px;margin-bottom:10px">
 	<volist name="repost" id="re" >
-		<div class="row"  style="border-bottom:solid 1px rgb(220,220,220);margin-right:3px;margin-left:3px;background-color:rgb(250,250,250)">
+		<div class="row"  >
 			<div class="col-md-2 col-xs-2">
 				<p><b class="text-muted">第{$re['lc']}楼</b></p>
 				<div AM="userinfo" class="text-center">
-					<h4>{$re["uid"]|uidname}</h4>
-					<a href="/index.php/Profile/index?uid={$re['uid']}"><img src="{$re["uid"]|uidimage}" width="40%" class="img-circle"></a>
+					<h5>{$re["uid"]|uidname}</h5>
+					<a href="/index.php/Profile/index?uid={$re['uid']}"><img src="{$re["uid"]|uidimage}" width="50px" class="img-circle"></a>
 				</div>
 				<p class="text-center"><i><small>#{$re['rid']}</small></i></p>
 			</div>
@@ -40,27 +55,71 @@
 				</p>
 			</div>
 		</div>
+		<hr>
 	</volist>
-	</div>
-	<div class="row text-center">
-		<p>{$page}</p>
+		<div class="row text-center">
+			<p>{$page}</p>
+		</div>
 	</div>
 
-<br>
+	<div style="background-color:#FFFFFF;border-radius:8px;padding:30px;margin:-15px;margin-top:15px">
 	<form action="/index.php/Index/repost" method="post">
 		<INPUT type="text" name="pid" value="{$post['pid']}" class="hide">
-		<div class="col-md-2 col-xs-2">
+		<div class="row">
 			<div AM="userinfo">
-				<h3>{$Think.session.uid|uidname}</h3>
-				<a href="/index.php/Profile/index?uid={$Think.session.uid}"><img src="{$Think.session.uid|uidimage}" width="60%" class="img-circle"></a>
+				<p><a href="/index.php/Profile/index?uid={$Think.session.uid}"><img src="{$Think.session.uid|uidimage}" width="50px" class="img-circle"> {$Think.session.uid|uidname}</a></p>
 			</div>
 		</div>
-		<div class="col-md-10 col-xs-10">
+		<div class="row">
 			<textarea name="text" id="ix">
 			</textarea>
 			<button class="btn btn-primary">回复</button>
 		</div>
 	</form>
+	</div>
+</div>
+
+<div class="col-md-3">
+	<div class="row" style="background-color:#FFFFFF;border-radius:8px;padding:30px;margin:10px;margin-left:5px">
+		<form action="/index.php/Index/search" method="get" >
+			<div class="row">
+				<div class="input-group">
+					<input type="text" name="title" class="form-control" placeholder="主题名称">
+					<span class="input-group-btn">
+						<input type="SUBMIT" class="btn btn-default" VALUE="搜索">
+					</span>
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<div  class="row" style="background-color:#FFFFFF;border-radius:8px;padding:30px;margin:10px;margin-left:5px">
+		<p>
+			<a href="/index.php/Profile/index?uid={$post['uid']}" ><img src="{$post['uid']|uidimage}" width="150px" class="img-circle center-block"></a>
+		</p>
+		<p >
+			<h4 class="text-center"><a href="/index.php/Profile/index?uid={$post['uid']}">{$post['uid']|uidname}</a></h4>
+		</p>	
+		<hr>
+		<p class="text-center">
+			<h5 class="text-muted">最新发布的主题:</h5>
+			<ul>
+				<volist name="recent" id="recent_post">
+					<li><a href="/index.php/Index/post/pid/{$recent_post['pid']}">{$recent_post['title']}</a></li>
+
+				</volist>
+			</ul>
+		</p>
+
+	</div>
+
+	<div class="row" style="background-color:#FFFFFF;border-radius:8px;padding:30px;margin:10px;margin-left:5px">
+		<h4>友情链接</h4>
+		<p><a href="">smbbs</a></p>
+		<p><a href="">xiuno</a></p>
+		<p><a href="">bootstrap</a></p>
+		<p><a href="">JQuery</a></p>
+	</div>
 </div>
 <script type="text/javascript">
 	UE.getEditor('ix' ,{

@@ -1,19 +1,14 @@
+<script type="text/javascript">
+	$("body").css("background-color","#F1F1F1");
 
+</script>
+
+<div class="col-md-8" style="background-color:#FFFFFF;border-radius:8px;padding:30px;margin:10px">
 <div class="row">
 	<div class="col-md-4 col-xs-12">
 		<a href="/index.php/Index/index?type=post" class="btn-xs btn-info">最新发帖</a>
 		<a href="/index.php/Index/index?type=repost" class="btn-xs btn-info">最新回复</a>
 	</div>
-	<form action="/index.php/Index/search" method="get" >
-	<div class="col-md-4 col-md-offset-8 col-xs-12">
-		<div class="input-group">
-				<input type="text" name="title" class="form-control" placeholder="主题名称">
-				<span class="input-group-btn">
-					<input type="SUBMIT" class="btn btn-default" VALUE="搜索">
-				</span>
-		</div>
-	</div>
-	</form>
 </div>
 <br>
 <div class="row">
@@ -45,6 +40,32 @@
 			<td></td>
 		</tr>
 	</table>
+</div>
+</div>
+
+<div class="col-md-3" >
+	<div class="row" style="background-color:#FFFFFF;border-radius:8px;padding:30px;margin:10px;margin-left:5px">
+		<form action="/index.php/Index/search" method="get" >
+			<div class="row">
+				<div class="input-group">
+					<input type="text" name="title" class="form-control" placeholder="主题名称">
+					<span class="input-group-btn">
+						<input type="SUBMIT" class="btn btn-default" VALUE="搜索">
+					</span>
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<div class="row" style="background-color:#FFFFFF;border-radius:8px;padding:30px;margin:10px;margin-left:5px">
+		<h4>友情链接</h4>
+		<p><a href="">smbbs</a></p>
+		<p><a href="">xiuno</a></p>
+		<p><a href="">bootstrap</a></p>
+		<p><a href="">JQuery</a></p>
+	</div>
+
+
 </div>
 
 <script type="text/javascript">

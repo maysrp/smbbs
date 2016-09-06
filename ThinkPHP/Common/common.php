@@ -804,3 +804,7 @@ function pidname($pid){
         return $post['title'];
     }
 }
+function uidrecent($uid){//5
+    $post=D('Post')->where("uid='".$uid."'")->order("time")->limit(5)->select();
+    return $post;
+}
