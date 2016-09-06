@@ -808,3 +808,7 @@ function uidrecent($uid){//5
     $post=D('Post')->where("uid='".$uid."'")->order("time")->limit(5)->select();
     return $post;
 }
+function footer(){
+    $site=M('Site')->find(1);
+    echo $site['footer'];
+}

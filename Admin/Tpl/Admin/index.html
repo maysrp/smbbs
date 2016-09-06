@@ -67,5 +67,26 @@
 			</table>
 		</div>
 	</div>
+	<div class="row">
+		<div class="panel panel-success">
+			<div class="panel-heading"><h4>Footer</h4></div>
+			<table class="table">
+				<tr>
+					<form action="/admin.php/Site/footer" method="post">
+					<td>
+						<textarea class="form-control" id="footer" name="footer" style="height:400px">
+							{$site}
+						</textarea>
+					</td>
+					
+				</tr>
+				<tr>
+					<td><input type="submit" value="提交" class="btn btn-info"></td>
+				</tr>
+				</form>
+			</table>
+		</div>		
+
+	</div>
 
 </div>
