@@ -41,7 +41,8 @@
 <script type="text/javascript">
 	var n_id=$("#nav_active").attr("AM");
 	$("#n_"+n_id).addClass("active");
-	if(!n_id){
+	var nav_post=$("#nav_post").attr("AM");
+	if(!n_id&&!nav_post){
 		$("#n_home").addClass("active");
 	}
 
