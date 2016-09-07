@@ -1,5 +1,5 @@
 <?php //uid recent Post 5
-    $recent=uidrecent($post['uid']);
+    $recent=uidrecent($_SESSION['uid']);
 ?>
 <script type="text/javascript">
     $("body").css("background-color","#F1F1F1");
@@ -52,14 +52,14 @@
     </div>
     <div  class="row" style="background-color:#FFFFFF;border-radius:8px;padding:30px;margin:10px;margin-left:5px">
         <p>
-            <a href="/index.php/Profile/index?uid={$post['uid']}" ><img src="{$post['uid']|uidimage}" width="150px" class="img-circle center-block"></a>
+            <a href="/index.php/Profile/index?uid={$post['uid']}" ><img src="{$_SESSION['uid']|uidimage}" width="150px" class="img-circle center-block"></a>
         </p>
         <p >
-            <h4 class="text-center"><a href="/index.php/Profile/index?uid={$post['uid']}">{$post['uid']|uidname}</a></h4>
+            <h4 class="text-center"><a href="/index.php/User">{$_SESSION['uid']|uidname}</a></h4>
         </p>    
         <hr>
         <p class="text-center">
-            <h5 class="text-muted">最新发布的主题:</h5>
+            <h5 class="text-muted">我最近发布的主题:</h5>
             <ul>
                 <volist name="recent" id="recent_post">
                     <li><a href="/index.php/Index/post/pid/{$recent_post['pid']}">{$recent_post['title']}</a></li>
