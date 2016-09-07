@@ -812,3 +812,16 @@ function footer(){
     $site=M('Site')->find(1);
     echo $site['footer'];
 }
+function sign_button(){
+    if(!$_SESSION['uid']){
+        echo "<a href=\"/index.php/User/login\" class=\"btn btn-primary btn-sm\">登入</a>";
+    }else{
+        $user=M('User')->find($_SESSION['uid']);
+        $date=date("Ymd");
+        if($user['sign']!=$date){
+            echo "<a href=\"/index.php/Sign/sign\"  class=\"btn btn-info\">签到</a>";
+        }else{
+            echo "<a href=\"\" class=\"btn btn-info \" disabled >你已经签到</a>";
+        }
+    }
+}

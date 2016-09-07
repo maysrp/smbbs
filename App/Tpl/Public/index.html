@@ -16,17 +16,6 @@
 			<volist name="boards" id="boa">
 				<li id="n_{$boa[bid]}"><a href="/index.php/Index/board?bid={$boa[bid]}">{$boa[name]}</a></li>
 			</volist>
-			<A HREF="/index.php/User"><img src="{$_SESSION['uid']|uidimage}" class="img-circle" width="45px">
-				<?php 
-					$remindinfo=D("Remind")->num();
-					if($remindinfo>0){
-				 ?>
-				<a href="/index.php/Remind"><span class="label label-danger">{$remindinfo}</span></a>
-
-				<?php }?>
-
-			</A>
-
 		</ul>
 
 
