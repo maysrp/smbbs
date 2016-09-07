@@ -59,6 +59,7 @@
 				return;
 			}
 			$this->POST->where("pid='".$pid."'")->delete();
+			D('Lp')->lp_dec(5);//删帖减分
 			D('User')->postdec();
 			header("Location:$_SERVER[HTTP_REFERER]");
 		}

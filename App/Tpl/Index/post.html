@@ -99,7 +99,13 @@
 	</div>
 	<div  class="row" style="background-color:#FFFFFF;border-radius:8px;padding:30px;margin:10px;margin-left:5px">
 		<p>
+			<a href="/index.php/Profile/index?uid={$post['uid']}" class="btn btn-default">作者</a>
+		</p>
+		<p>
 			<a href="/index.php/Profile/index?uid={$post['uid']}" ><img src="{$post['uid']|uidimage}" width="150px" class="img-circle center-block"></a>
+		</p>
+		<p>
+			<p class="text-center">{$post['uid']|level}</p>
 		</p>
 		<p >
 			<h4 class="text-center"><a href="/index.php/Profile/index?uid={$post['uid']}">{$post['uid']|uidname}</a></h4>

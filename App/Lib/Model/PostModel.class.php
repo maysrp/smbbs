@@ -10,6 +10,7 @@
 				return "板块错误";
 			}
 			$this->add($add);
+			D('Lp')->lp(5);
 		}
 		function ownpost($pid){
 			if(!$pid){
@@ -35,10 +36,11 @@
 				return $pi;
 			}
 		}
-		function retime($pid){
-			if($this->exist($pid)){
+		function retime($pid){//
+			if($po=$this->exist($pid)){
 				$time=time();
 				$this->where("pid='".$pid."'")->setField("retime",$time);
+				D('Lp')->lp_uid(1,$po['uid']);//回复一次加一
 			}
 
 		}

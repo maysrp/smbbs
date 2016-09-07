@@ -25,6 +25,7 @@
 						$save['user']=json_encode($user);
 						$save['info']=json_encode($info);
 						M('Sign')->where("date='".$date."'")->save($save);//add
+						D('Lp')->lp(10);
 						$this->success("完成签到！");
 					}
 				}else{
@@ -64,6 +65,7 @@
 						//$this->success("完成签到！");
 						$re['re']="success";
 						$re['x']="签到完成";
+						D('Lp')->lp(10);
 					}
 				}else{
 					//$this->success("今天你已经签到！");

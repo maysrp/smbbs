@@ -9,12 +9,15 @@
 </div>
 
 <div class="row" style="background-color:#FFFFFF;border-radius:10px;margin:10px">
-	<div class="col-md-3">
+	<div class="col-md-3" style="padding-top:50px;padding-left:40px;">
 		<img src="{$info['uid']|uidimage}" width="150px" class="img-circle" id="image">
 	</div>
 	<div class="col-md-6">
 		<p>
-			<h3>{$info['uid']|uidname}</h3>
+			<h3>{$info['uid']|uidname} </h3>
+		</p>
+		<p>
+			<b><span class="text-warning">$ {$info['point']}</span></b> / <b><span class="text-info">LEVEL {$info['level']/100|ceil}</span></b> <small class="muted">还需要<?php echo 100-$info['level']%100 ?>经验升级</small>
 		</p>
 		<p>
 			<h4><a href="/index.php/Remind/index"><b class="text-danger">未读消息 </b><span class="label label-danger"><?php echo D('Remind')->num() ?></span></a></h4>

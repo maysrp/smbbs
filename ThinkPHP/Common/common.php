@@ -837,3 +837,10 @@ function sign_button(){
         }
     }
 }
+function level($uid){
+    $user=D('User')->find($uid);
+    if ($user) {
+        $level=ceil($user['level']/100);
+        return "<b>Level ".$level."</b>"; 
+    }
+}

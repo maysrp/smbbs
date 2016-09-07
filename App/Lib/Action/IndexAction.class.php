@@ -79,7 +79,7 @@ class IndexAction extends Action {
 
         D('Remind')->remind($rem);
         D('Post')->retime($repost['pid']);
-        //
+        D('Lp')->lp(1);//回复加一
     	header("Location:$_SERVER[HTTP_REFERER]");
     }
     function rere(){
@@ -117,6 +117,7 @@ class IndexAction extends Action {
             $rem['lc']=$con;
             D('Remind')->remind($rem);
             D("Post")->retime($pid);
+            D('Lp')->lp(1);//回复加一
     		$this->redirect("./index.php/Index/post?pid=$repost[pid]");
     	 }else{
     	 	$this->assign("re",$isexist);
