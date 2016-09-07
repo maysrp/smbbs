@@ -28,7 +28,7 @@
 		<volist name="post" id="p">
 			<tr>
 				<td >
-					<span  class="user_info" AM="{$p[pid]}">{$p['title']}</span>
+					<span><a href="/index.php/Index/post/pid/{$p['pid']}">{$p['title']}</a></span>
 				</td>
 				<div id="user_{$p[pid]}" style="width:200px;height:120px;display:none;background-color:#E3E3E3;position:fixed">
 					
@@ -36,7 +36,7 @@
 							<a href="/index.php/Profile/index?uid={$p['uid']}" style="margin:10px">{$p['uid']|uidname}</a>
 					
 				</div>
-				<td class="text-right">
+				<td class="text-right user_info"  AM="{$p[pid]}">
 					{$p['time']|date="Y-m-d H:i",###} |
 					<span class="label label-danger"> {$p['view']}/{$p['num']}
 					</span>
