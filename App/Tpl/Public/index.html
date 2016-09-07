@@ -11,12 +11,16 @@
 		$boards=allboard();
 	?>
 	<div class="container">
-		<ul class="nav nav-pills" id="nav">
+		<div class="row " style="margin:10px;">
+		<nav   >
+		<ul class="nav nav-pills" >
 			<li id="n_home"><a href="/">Home</a></li>
 			<volist name="boards" id="boa">
 				<li id="n_{$boa[bid]}"><a href="/index.php/Index/board?bid={$boa[bid]}">{$boa[name]}</a></li>
 			</volist>
 		</ul>
+		</nav>
+		</div>
 
 
 		{__CONTENT__}

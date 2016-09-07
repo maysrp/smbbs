@@ -814,14 +814,14 @@ function footer(){
 }
 function sign_button(){
     if(!$_SESSION['uid']){
-        echo "<a href=\"/index.php/User/login\" class=\"btn btn-primary btn-sm\">登入</a>";
+        echo "<a href=\"/index.php/User/login\" class=\"btn btn-primary btn-sm\"  data-toggle=\"tooltip\" data-placement=\"bottom\" title=\"您还未登入！\">登入</a>";
     }else{
         $user=M('User')->find($_SESSION['uid']);
         $date=date("Ymd");
         if($user['sign']!=$date){
             echo "<a href=\"/index.php/Sign/sign\"  class=\"btn btn-info\">签到</a>";
         }else{
-            echo "<a href=\"\" class=\"btn btn-info \" disabled >你已经签到</a>";
+            echo "<a href=\"/index.php/User/index\" data-toggle=\"tooltip\" data-placement=\"bottom\" title=\"点击进入个人后台\" class=\"btn btn-success \" >你已签到</a>";
         }
     }
 }
