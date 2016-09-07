@@ -36,7 +36,7 @@
 							return "./index.php/Index/post?pid=".$info['xid']."&p=".$p;
 						}
 					}elseif($info['type']=='repost'){
-						return "./index.php/Index/re?rid=".$info['xid'];
+						return "./index.php/Index/rere?rid=".$info['xid'];
 					}
 
 					//return $info;

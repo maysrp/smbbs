@@ -804,6 +804,18 @@ function pidname($pid){
         return $post['title'];
     }
 }
+function pidtext($pid){
+    $post=D("Post")->find($pid);
+    if($post){
+        return $post['text'];
+    }
+}
+function pid_all($pid){//取出帖子的所有发布信息
+    $post=D("Post")->find($pid);
+    if($post){
+        return uidname($post['uid'])."/发布于".date("Y-m-d H:i",$post['time'])." /围观 ".$post['view']." /回复 ".$post['num'];
+    }
+}
 function uidrecent($uid){//5
     $post=D('Post')->where("uid='".$uid."'")->order("time")->limit(5)->select();
     return $post;

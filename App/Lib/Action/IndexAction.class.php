@@ -59,6 +59,8 @@ class IndexAction extends Action {
             return;
         }
     	A('User')->auto();//LOGIN CHECK
+        $post=D('Post')->find($_POST['pid']);
+        $repost['bid']=$post['bid'];
     	$repost['text']=$_POST['text'];
     	$repost['pid']=$_POST['pid'];
     	$repost['uid']=$_SESSION['uid'];
@@ -93,8 +95,10 @@ class IndexAction extends Action {
                 $this->error("字数不能为空！");
                 return;
             }
-    	 	$repost['text']=$_POST['text'];
+    	 	$repost['text']="<blockquote style=\"background-color:rgb(230,230,230)\"><p>".$isexist['text']."</p><small><span class=\"text-warning\">引用 <cite>".uidname($isexist['uid'])."</cite></span></small></blockquote>".$_POST['text'];
     		$repost['pid']=$_POST['pid'];
+            $repost['rrid']=$_POST['rrid'];
+            $repost['bid']=$_POST['bid'];
     		$repost['uid']=$_SESSION['uid'];
     		$repost['time']=time();
     		$xid=D('Repost')->add($repost);

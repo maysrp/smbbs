@@ -4,15 +4,16 @@
 </script>
 
 
-    <?php //uid recent Post 5
-    $recent=uidrecent($post['uid']);
+<?php //uid recent Post 5
+    $recent=uidrecent($re['uid']);
 ?>
+
 <script type="text/javascript">
     $("body").css("background-color","#F1F1F1");
 </script>
 
 <style type="text/css">
-    img {max-width: 600px}
+    img {max-width: 400px}
 </style>
 
 <script type="text/javascript" src="/plugins/ue/ueditor.config.js"></script>  
@@ -27,29 +28,44 @@
 </div>
 
 <div class="row"  style="background-color:#FFFFFF;border-radius:8px;padding:30px;margin-bottom:10px">
-        <h4><a href="/index.php/Index/post/pid/{$re['pid']}">{$repost['pid']|pidname}</a></h4>
+        <h4><a href="/index.php/Index/post/pid/{$re['pid']}">{$re['pid']|pidname}</a></h4>
+        <p class="text-muted">{$re['pid']|pid_all}</p>
+        <button class="btn btn-default" data-toggle="modal" data-target="#myModal"> >>>>点击查看帖子详情<<<< </button>
+        <hr>
+            <div class="row" style="margin-left:10px">
+                <p class="row"><b class="text-muted">第{$re['lc']}楼</b></p>
+                <p class="row" AM="userinfo">
+                    <span class="col-xs-1"><a href="/index.php/Profile/index?uid={$re['uid']}"><img src="{$re["uid"]|uidimage}" width="50px" class="img-circle"></a></span>
+                    <span class="col-xs-3">
+                        <span class="row"><a href="/index.php/Profile/index?uid={$re['uid']}">{$re["uid"]|uidname}</a></span> 
+                        <i class="row"><small>#{$re['rid']} /发布于 {$re['time']|date="Y-m-d H:i",###}</small></i>
+                    </span>
+                </p>
+            </div>
+            <div class="row" style="padding-left:25px;margin-top:15px">
+                {$re['text']}
+            </div>
+
 </div>
 
 <script type="text/javascript" src="/plugins/ue/ueditor.config.js"></script>  
 <script type="text/javascript" src="/plugins/ue/ueditor.all.js"></script> 
+
+
+<div class="row" style="background-color:#FFFFFF;border-radius:3px;padding:20px;margin-bottom:10px">
 <div class="hide" id="ed">
-    <blockquote style="background-color:rgb(230,230,230)">
-        <p>
-        {$re['text']}
-        </p>
-        <small><span class="text-warning">引用 <cite>{$re['uid']|uidname}</cite></span></small>
-    </blockquote>
-    <hr>
-    <br>
 </div>
 
 <div class="row">
     <form action="" method="post">
         <input type="text" name="pid" value="{$re['pid']}" class="hide">
+        <input type="text" name="bid" value="{$re['bid']}" class="hide">
+        <input type="text" name="rrid" value="{$re['rid']}" class="hide">
         <textarea name="text" id="tx">
         </textarea>
         <button class="btn btn-primary">回复</button>
     </form>
+</div>
 </div>
 <script type="text/javascript">
 //change for id or use 
@@ -106,10 +122,10 @@ var ue=UE.getEditor('tx' ,{
     </div>
     <div  class="row" style="background-color:#FFFFFF;border-radius:8px;padding:30px;margin:10px;margin-left:5px">
         <p>
-            <a href="/index.php/Profile/index?uid={$post['uid']}" ><img src="{$post['uid']|uidimage}" width="150px" class="img-circle center-block"></a>
+            <a href="/index.php/Profile/index?uid={$re['uid']}" ><img src="{$re['uid']|uidimage}" width="150px" class="img-circle center-block"></a>
         </p>
         <p >
-            <h4 class="text-center"><a href="/index.php/Profile/index?uid={$post['uid']}">{$post['uid']|uidname}</a></h4>
+            <h4 class="text-center"><a href="/index.php/Profile/index?uid={$re['uid']}">{$re['uid']|uidname}</a></h4>
         </p>    
         <hr>
         <p class="text-center">
@@ -140,3 +156,19 @@ var ue=UE.getEditor('tx' ,{
 
 
 
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">{$re['pid']|pidname}</h4>
+      </div>
+      <div class="modal-body">
+       {$re['pid']|pidtext}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
