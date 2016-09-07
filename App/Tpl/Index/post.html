@@ -12,7 +12,7 @@
 <script type="text/javascript" src="/plugins/ue/ueditor.config.js"></script>  
 <script type="text/javascript" src="/plugins/ue/ueditor.all.js"></script> 
 
-<div class="col-md-8" style="margin-top:10px" >
+<div class="col-md-8 col-xs-12" style="margin-top:10px" >
 
 	<div class="row" style="background-color:#FFFFFF;border-radius:3px;padding:5px;margin-bottom:10px">
 		<span><a href="/index.php/Index">Home</a>/<a class="text-warning" href="/index.php/Index/board/bid/{$post['bid']}">{$post['bid']|bidname}</a></span>
@@ -43,8 +43,8 @@
 			<div class="row" style="margin-left:10px">
 				<p class="row"><b class="text-muted">第{$re['lc']}楼</b></p>
 				<p class="row" AM="userinfo">
-					<span class="col-xs-1"><a href="/index.php/Profile/index?uid={$re['uid']}"><img src="{$re["uid"]|uidimage}" width="50px" class="img-circle"></a></span>
-					<span class="col-xs-3">
+					<span class="col-md-1 col-xs-12"><a href="/index.php/Profile/index?uid={$re['uid']}"><img src="{$re["uid"]|uidimage}" width="50px" class="img-circle"></a></span>
+					<span class="col-md-3 col-xs-12">
 						<span class="row"><a href="/index.php/Profile/index?uid={$re['uid']}">{$re["uid"]|uidname}</a></span> 
 						<i class="row"><small>#{$re['rid']} /发布于 {$re['time']|date="Y-m-d H:i",###}</small></i>
 					</span>
@@ -81,7 +81,7 @@
 	</div>
 </div>
 
-<div class="col-md-3">
+<div class="col-md-3 col-xs-12" style="margin:10px">
 	<div class="row" style="background-color:#FFFFFF;border-radius:8px;padding:30px;margin:10px;margin-left:5px">
 		<form action="/index.php/Index/search" method="get" >
 			<div class="row">
