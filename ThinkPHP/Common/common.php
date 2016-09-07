@@ -817,7 +817,7 @@ function pid_all($pid){//取出帖子的所有发布信息
     }
 }
 function uidrecent($uid){//5
-    $post=D('Post')->where("uid='".$uid."'")->order("time")->limit(5)->select();
+    $post=D('Post')->where("uid='".$uid."'")->order("time desc")->limit(5)->select();
     return $post;
 }
 function footer(){
