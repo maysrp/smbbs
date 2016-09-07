@@ -4,64 +4,139 @@
 </script>
 
 
-    <div class="row">
-        <h3><a href="/index.php/Index/post?pid={$re['pid']}">{$repost['pid']|pidname}</a></h3>
-        <hr>
-    </div>
+    <?php //uid recent Post 5
+    $recent=uidrecent($post['uid']);
+?>
+<script type="text/javascript">
+    $("body").css("background-color","#F1F1F1");
+</script>
+
+<style type="text/css">
+    img {max-width: 600px}
+</style>
+
+<script type="text/javascript" src="/plugins/ue/ueditor.config.js"></script>  
+<script type="text/javascript" src="/plugins/ue/ueditor.all.js"></script> 
+
+<span id="nav_post" AM={$re['bid']}></span>
+
+<div class="col-md-8" style="margin-top:10px" >
+
+<div class="row" style="background-color:#FFFFFF;border-radius:3px;padding:5px;margin-bottom:10px">
+    <span><a href="/index.php/Index">Home</a>/<a class="text-warning" href="/index.php/Index/board/bid/{$re['bid']}">{$re['bid']|bidname}</a>/<a href="/index.php/Index/post/pid/{$re['pid']}" class="text-success">{$re['pid']|pidname}</a></span>
+</div>
+
+<div class="row"  style="background-color:#FFFFFF;border-radius:8px;padding:30px;margin-bottom:10px">
+        <h4><a href="/index.php/Index/post/pid/{$re['pid']}">{$repost['pid']|pidname}</a></h4>
+</div>
 
 <script type="text/javascript" src="/plugins/ue/ueditor.config.js"></script>  
 <script type="text/javascript" src="/plugins/ue/ueditor.all.js"></script> 
 <div class="hide" id="ed">
-	<blockquote style="background-color:rgb(230,230,230)">
-		<p>
-		{$re['text']}
-		</p>
-		<small><span class="text-warning">引用 <cite>{$re['uid']|uidname}</cite></span></small>
-	</blockquote>
-	<hr>
-	<br>
+    <blockquote style="background-color:rgb(230,230,230)">
+        <p>
+        {$re['text']}
+        </p>
+        <small><span class="text-warning">引用 <cite>{$re['uid']|uidname}</cite></span></small>
+    </blockquote>
+    <hr>
+    <br>
 </div>
 
 <div class="row">
-	<form action="" method="post">
-		<input type="text" name="pid" value="{$re['pid']}" class="hide">
-		<textarea name="text" id="tx">
-		</textarea>
-		<button class="btn btn-primary">回复</button>
-	</form>
+    <form action="" method="post">
+        <input type="text" name="pid" value="{$re['pid']}" class="hide">
+        <textarea name="text" id="tx">
+        </textarea>
+        <button class="btn btn-primary">回复</button>
+    </form>
 </div>
 <script type="text/javascript">
 //change for id or use 
 var ue=UE.getEditor('tx' ,{
-    	toolbars: [
-    		[
-    			'source', //源代码
-    			'undo', //撤销
-        		'redo', //重做
-        		'bold', //加粗
-        		'italic', //斜体
-        		'underline', //下划线
-        		'strikethrough', //删除线
-        		'fontfamily', //字体
-        		'forecolor', //字体颜色
-        		'fontsize', //字号
-        		'link', //超链接
-        		'unlink', //取消链接
-           	    'emotion', //表情
-        	    'backcolor', //背景色
-        		'insertimage', //多图上传
-        		'attachment', //附件
-        		'removeformat', //清除格式
-        		'horizontal', //分隔线
-        		'inserttable', //插入表格
-        		'fullscreen', //全屏
-    		]
-		]
+        toolbars: [
+            [
+                'source', //源代码
+                'undo', //撤销
+                'redo', //重做
+                'bold', //加粗
+                'italic', //斜体
+                'underline', //下划线
+                'strikethrough', //删除线
+                'fontfamily', //字体
+                'forecolor', //字体颜色
+                'fontsize', //字号
+                'link', //超链接
+                'unlink', //取消链接
+                'emotion', //表情
+                'backcolor', //背景色
+                'insertimage', //多图上传
+                'attachment', //附件
+                'removeformat', //清除格式
+                'horizontal', //分隔线
+                'inserttable', //插入表格
+                'fullscreen', //全屏
+            ]
+        ]
     }
     )
     var ed=$("#ed").html();
     ue.addListener("ready",function(){
-    	ue.setContent(ed);
+        ue.setContent(ed);
     })
 
 </script>
+</div>
+
+<div class="col-md-3">
+    <div class="row" style="background-color:#FFFFFF;border-radius:8px;padding:30px;margin:10px;margin-left:5px">
+        <form action="/index.php/Index/search" method="get" >
+            <div class="row">
+                <div class="input-group">
+                    <input type="text" name="title" class="form-control" placeholder="主题名称">
+                    <span class="input-group-btn">
+                        <input type="SUBMIT" class="btn btn-default" VALUE="搜索">
+                    </span>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="row" style="background-color:#FFFFFF;border-radius:8px;padding-top:10px;margin:10px;margin-left:5px">
+        <p class="text-center"><?php sign_button(); ?></p>
+    </div>
+    <div  class="row" style="background-color:#FFFFFF;border-radius:8px;padding:30px;margin:10px;margin-left:5px">
+        <p>
+            <a href="/index.php/Profile/index?uid={$post['uid']}" ><img src="{$post['uid']|uidimage}" width="150px" class="img-circle center-block"></a>
+        </p>
+        <p >
+            <h4 class="text-center"><a href="/index.php/Profile/index?uid={$post['uid']}">{$post['uid']|uidname}</a></h4>
+        </p>    
+        <hr>
+        <p class="text-center">
+            <h5 class="text-muted">最新发布的主题:</h5>
+            <ul>
+                <volist name="recent" id="recent_post">
+                    <li><a href="/index.php/Index/post/pid/{$recent_post['pid']}">{$recent_post['title']}</a></li>
+
+                </volist>
+            </ul>
+        </p>
+
+    </div>
+
+    <div class="row" style="background-color:#FFFFFF;border-radius:8px;padding:30px;margin:10px;margin-left:5px">
+        <?php
+            footer();
+        ?>
+    </div>
+</div>
+<script type="text/javascript">
+    var n_id=$("#nav_post").attr("AM");
+    $("#n_"+n_id).addClass("active");
+</script>
+
+
+
+
+
+
