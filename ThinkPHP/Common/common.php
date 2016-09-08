@@ -848,10 +848,11 @@ function sign_button(){
 function level($uid){
     $user=D('User')->find($uid);
     if(!$uid){
-        return "<b><a class=\"text-success\" href=\"/index.php/User/login\">为登记用户</a></a>";
+        return "<b><a class=\"text-success\" href=\"/index.php/User/login\">未登记用户</a></a>";
     }
     if ($user) {
         $level=ceil($user['level']/100);
-        return "<b>Level ".$level."</b>"; 
+        $name=uidname($uid);
+        return "<b><a class=\"text-primary\" href=\"/index.php/Profile/index/uid/".$uid."\">".$name."</a> Level ".$level."</b>"; 
     }
 }
