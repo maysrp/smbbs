@@ -30,11 +30,14 @@
 				<td >
 					<span><a href="/index.php/Index/post/pid/{$p['pid']}">{$p['title']}</a></span>
 				</td>
-				<div id="user_{$p[pid]}" style="width:200px;height:120px;display:none;background-color:#E3E3E3;position:fixed">
-					
-							<img src={$p['uid']|uidimage} width="80px" height="80px" style="margin:10px">
-							<a href="/index.php/Profile/index?uid={$p['uid']}" style="margin:10px">{$p['uid']|uidname}</a>
-					
+				<div class="row" id="user_{$p[pid]}" style="width:200px;height:100px;display:none;background-color:#E3E3E3;position:fixed;border-radius:5px">
+						<div class="col-xs-5">
+								<img src={$p['uid']|uidimage} width="80px" height="80px" style="margin-top:5px">
+						</div>
+						<div class="col-xs-6" style="margin:5px">
+							<p><a href="/index.php/Profile/index?uid={$p['uid']}" >{$p['uid']|uidname}</a></p>
+							<p>{$p['uid']|level}</p>
+						</div>						
 				</div>
 				<td class="text-right user_info"  AM="{$p[pid]}">
 					{$p['time']|date="Y-m-d H:i",###} |
