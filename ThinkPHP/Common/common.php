@@ -756,9 +756,14 @@ function trace($value='[think]',$label='',$level='DEBUG',$record=false) {
     }
 }
 function uidname($uid){
+    if(!$uid){
+        return "匿名用户";
+    }
     $x=D('User')->find($uid);
     if($x){
         return $x['name'];
+    }else{
+        return "匿名用户";
     }
 
 }
@@ -784,6 +789,9 @@ function uidjoininfo($uid){
 
 }
 function uidimage($uid){
+    if(!$uid){
+        return "/Uploads/tx/common.jpg";
+    }
     $x=D('User')->find($uid);
     if($x['image']){
         return $x['image'];
@@ -839,6 +847,9 @@ function sign_button(){
 }
 function level($uid){
     $user=D('User')->find($uid);
+    if(!$uid){
+        return "<b><a class=\"text-success\" href=\"/index.php/User/login\">为登记用户</a></a>";
+    }
     if ($user) {
         $level=ceil($user['level']/100);
         return "<b>Level ".$level."</b>"; 
