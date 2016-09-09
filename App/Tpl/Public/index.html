@@ -1,8 +1,10 @@
+<!DOCTYPE html>
 <head>
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="/src/css/bootstrap.min.css">
 	<script src="/src/js/jquery.js"></script>
 	<script src="/src/js/bootstrap.min.js"></script>
+
 
 </head>
 <span id="nav_active" AM={$_GET['bid']}></span>
@@ -31,14 +33,6 @@
 		<p> <small class="muted">Powered by <a href="http://git.oschina.net/supercell/smbbs">smbbs</a></small></p>
 	</div>
 </body>
-<script type="text/javascript">
-	var n_id=$("#nav_active").attr("AM");
-	$("#n_"+n_id).addClass("active");
-	var nav_post=$("#nav_post").attr("AM");
-	if(!n_id&&!nav_post){
-		$("#n_home").addClass("active");
-	}
 
-</script>
 
 
