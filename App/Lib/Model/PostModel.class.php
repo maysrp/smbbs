@@ -1,6 +1,10 @@
 <?php
 	class PostModel extends Model{
 		function sendpost($post){
+			preg_match_all('/<img.*?src=[\"|\']?(.*?)[\"|\']?\s.*?\/>/i', $post['text'], $image);
+			if(count($image)){
+				$add['image']=json_encode($image[0]);
+			}
 			$add['text']=$post['text'];
 			$add['title']=$post['title'];
 			$add['time']=time();
@@ -28,6 +32,10 @@
 		}
 		function renew($post){
 			$post['retime']=time();
+			preg_match_all('/<img.*?src=[\"|\']?(.*?)[\"|\']?\s.*?\/>/i', $post['text'], $image);
+			if(count($image)){
+				$post['image']=json_encode($image[0]);
+			}
 			$this->where("pid='".$post['pid']."'")->save($post);
 		}
 		function exist($pid){
@@ -45,3 +53,4 @@
 
 		}
 	}
+
