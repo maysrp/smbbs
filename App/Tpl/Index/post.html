@@ -25,6 +25,7 @@
 			<div class="col-md-1" style="margin-top:20px;">
 				<img src="{$post['uid']|uidimage}" width="50px" class="img-circle">
 			</div>
+			<a name="top_post" id="top_post"></a>
 			<div class="col-md-9" style="margin:5px;">
 				<h3>{$post['title']}</h3>
 				<p class="text-muted"><small>{$post['uid']|uidname} / 发布于{$post['time']|date="Y-m-d H:i",###} / 围观{$post[view]} / 回复{$post['num']} </small></p>
@@ -34,6 +35,7 @@
 		<div class="row">
 			{$post['text']}
 
+			<p class="text-right"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#fast">快速回复</button></p>
 		</div>
 	</div>
 
@@ -163,7 +165,22 @@
     )
 </script>
 
+<div class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="fast">
+  <div class="modal-dialog">
+    <div class="modal-content">
+     <div class="modal-body">
+     	<form action="/index.php/Index/repost" method="post">
+     		<INPUT type="text" name="pid" value="{$post['pid']}" class="hide">
+     		<textarea class="form-control" name="text" style="height:183px">
+     		</textarea>
+     		<span style="margin:5px">
+     			<button class="btn btn-default" data-dismiss="modal" style="margin:5px">取消</button>
+     			<input type="submit" class="btn btn-primary" value="回复" style="margin:5px">
+     		</span>
+     	</form>
+     </div>
+    </div>
+  </div>
+</div>
 
-
-
-
+<span id="top_click"  style="position:fixed;right:30%;bottom:5%;"><a class="btn btn-default" href="#top_post" target="_self">返回顶部</a></span>

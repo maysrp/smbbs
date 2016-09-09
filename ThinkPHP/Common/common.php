@@ -841,7 +841,7 @@ function sign_button(){
         if($user['sign']!=$date){
             echo "<a href=\"/index.php/Sign/sign\"  class=\"btn btn-info\">签到</a>";
         }else{
-            echo "<a href=\"/index.php/User/index\" data-toggle=\"tooltip\" data-placement=\"bottom\" title=\"点击进入个人后台\" class=\"btn btn-success \" >你已签到</a>";
+            echo "<a href=\"/index.php/User/index\" data-toggle=\"tooltip\" data-placement=\"bottom\" title=\"你已签到\" class=\"btn btn-success \" >用户中心</a>";
         }
     }
 }
