@@ -23,12 +23,13 @@
 	<table class="table table-striped">
 		<tr class="info">
 			<th>主题</th>
-			<th class="text-right">发帖时间 | 围观/回复</th>
+			<th class="text-right"></th>
 		</tr>
 		<volist name="post" id="p">
 			<tr>
 				<td >
-					<span><a href="/index.php/Index/post/pid/{$p['pid']}">{$p['title']}</a></span>
+					<p><span><a href="/index.php/Index/post/pid/{$p['pid']}" class="post_link">{$p['title']}</a></span></p>
+					<p><small class="text-muted"><a href="/index.php/Profile/index/uid/{$p['uid']}" class="text-info">{$p['uid']|uidname}</a> 发布于 {$p['time']|date="Y-m-d H:i",###}</small></p>
 				</td>
 				<div class="row" id="user_{$p[pid]}" style="width:200px;height:100px;display:none;background-color:#E3E3E3;position:fixed;border-radius:5px">
 						<div class="col-xs-5">
@@ -39,14 +40,15 @@
 						</div>						
 				</div>
 				<td class="text-right user_info"  AM="{$p[pid]}">
-					{$p['time']|date="Y-m-d H:i",###} |
-					<span class="label label-danger"> {$p['view']}/{$p['num']}
-					</span>
+					<small class="text-muted">
+						<span class="glyphicon glyphicon-comment"></span>{$p['num']} /
+						<span class="glyphicon glyphicon-eye-open"></span>{$p['view']}
+					</small>
 				</td>
 			</tr>
 		</volist>
 		<tr>
-			<td class="text-right">{$show}</td>
+			<td class="text-center">{$show}</td>
 			<td></td>
 		</tr>
 	</table>
