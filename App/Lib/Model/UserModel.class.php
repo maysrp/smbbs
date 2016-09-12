@@ -1,5 +1,17 @@
 <?php
 	class UserModel extends Model{
+		function verify($uid){
+			$verify=$this->find($uid);
+			if($verify){
+				return $verify;
+			}
+		}
+		function nameinfo($name){
+			$user=$this->where("name='".$name."'")->select();
+			if($user){
+				return $user[0];
+			}
+		}
 		function login($auth){
 			$jugg['name']=$auth['name'];
 			$jugg['password']=md5($auth['name'].$auth['password']);

@@ -1,0 +1,108 @@
+<script type="text/javascript">
+	$("body").css("background-color","#F1F1F1");
+</script>
+<style type="text/css">
+	img{
+		max-width: 350px;
+		margin: 10px;
+	}
+
+</style>
+<script type="text/javascript" src="/plugins/ue/ueditor.config.js"></script>  
+<script type="text/javascript" src="/plugins/ue/ueditor.all.js"></script>
+<div class="row">
+	<a onclick="window.history.go(-1)" class="btn btn-default">返回</a>
+	<a href="/index.php/User/index" class="btn btn-warning">用户中心</a>
+	<span class="dropdown">
+		<button data-toggle="dropdown"  class="btn btn-info " id="lb" aria-haspopup="true" aria-expanded="false">近期会话列表<span class="caret"></span></button>
+		<ul class="dropdown-menu" role="menu" aria-labelledby="lb">
+			<volist name="all" id="usertalk">
+				<li role="presentation"><a href="/index.php/Talk/index/tid/{$usertalk['tid']}">
+					<?php  $oneuser=($usertalk['uid']!=$_SESSION['uid'])?$usertalk['uid']:$usertalk['suid']; ?>
+					{$oneuser|uidname}
+				</a></li>
+			</volist>
+		</ul>
+	</span>
+	
+</div> 
+<div class="row" style="border:3px solid #EAEAEA;border-radius:5px;background-color:#FFFFFF">
+	<div class="col-md-2 bg-info text-center" >
+		<p><img src="{$uid|uidimage}" width="120px" class="img-circle"></p>
+		<p>{$uid|level}</p>
+
+	</div>
+	<div class="col-md-8" style="height:600px;overflow-y:scroll;border:3px solid #EAEAEA;border-radius:2px;" id="talk_scroll">
+		<volist name="talk" id="info">
+			<if condition="$info['suid'] eq $_SESSION['uid']">
+				<div class="row " >
+					<div class="col-sm-8 col-sm-offset-3 " >
+						<div class=" bg-danger" style="margin:2px;padding:5px;border-radius:2px">
+							<p styel="word-wrap:break-word;word-break:break-all;">{$info['text']}</p>
+							<p class="text-muted text-right"><small><i>{$info['time']|date="Y-m-d H:i:s",###}</i></small></p>
+						</div>
+					</div>
+				</div>
+			<else />
+				<div class="row"  >
+					<div class="col-sm-8">
+						<div class="bg-info" style="margin:5px;padding:5px;border-radius:2px">
+							<p styel="word-wrap:break-word;word-break:break-all;">{$info['text']}</p>
+							<p class="text-muted text-right"><small><i>{$info['time']|date="Y-m-d H:i:s ",###}</i></small></p>
+						</div>
+					</div>
+				</div>
+			</if>
+		</volist>
+	</div>
+	<div class="col-md-2 bg-danger text-center">
+		<p><img src="{$_SESSION['uid']|uidimage}" width="120px" class="img-circle"></p>
+		<p>{$_SESSION['uid']|level}</p>
+
+	</div>
+	<div class="col-md-8 col-md-offset-2" >
+		<form action="/index.php/Talk/send" method="post">
+			<div class="row">
+				<textarea name="text" id="textarea"></textarea>
+			</div>
+			<input type="text" name="tid" value="{$tid}" class="hidden">
+			<input type="submit" class="hidden" id="submit_talk" >
+		</form>
+			<div class="row text-right">
+				<a onclick="window.location.reload()" style="margin:10px;margin-right:1px;" ><span class="glyphicon glyphicon-refresh"></span></a>
+				<button class="btn btn-primary " id="send_talk" style="margin:10px">提交</button>
+			</div>
+
+	</div>
+
+</div>
+
+<script type="text/javascript">
+	$("#talk_scroll").scrollTop("65535");
+	$("#send_talk").click(function(){
+		var send=ue.getContent();
+		if(send){
+			$("#submit_talk").click();
+		}
+	})
+	var ue=UE.getEditor('textarea' ,{
+    	toolbars: [
+    		[
+    			'undo', //撤销
+        		'redo', //重做
+        		'bold', //加粗
+        		'italic', //斜体
+        		'underline', //下划线
+        		'strikethrough', //删除线
+        		'forecolor', //字体颜色
+        		'fontsize', //字号
+        		'emotion', //表情
+        		'insertimage', //多图上传
+        		'attachment', //附件
+
+    		]
+		]
+    }
+		)
+	$('.dropdown-toggle').dropdown()
+</script>
