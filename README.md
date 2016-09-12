@@ -1,8 +1,19 @@
 配置文件
-./Admin/Conf/config.php
-./App/Conf/config.php
+./Admin/Conf/config.php //论坛界面配置
+./App/Conf/config.php  //管理界面配置
+
+数据库bbs.sql
+
+管理员
+帐号:admin
+密码：123456
+
+
+
 
 Demo:http://www.geekw.com
+
+
 
 Torrent:
 ./App/Lib/Action/Torrent
