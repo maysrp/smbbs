@@ -41,6 +41,7 @@
 				$this->assign("tid",$tid);
 				$this->display();
 			}else{
+				$this->assign("uid",$uid);
 				$this->display();
 			}
 		}
@@ -49,9 +50,17 @@
 				return;
 			}	
 			if($_POST['text']){
-				$tid=$_POST['tid'];
-				$text=$_POST['text'];
-				D('Talk')->addone($tid,$text);
+				$tid=(int)$_POST['tid'];
+				$uid=(int)$_POST['uid'];
+				if($tid){
+					$text=$_POST['text'];
+					D('Talk')->addone($tid,$text);
+				}else{
+					if($uid){
+						$text=$_POST['text'];
+						D('Talk')->send($uid,$text);
+					}
+				}
 				header("Location:".$_SERVER['HTTP_REFERER']);
 			}else{
 				header("Location:".$_SERVER['HTTP_REFERER']);

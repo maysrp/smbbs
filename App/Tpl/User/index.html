@@ -27,7 +27,7 @@
 			<?php sign_button() ?>
 		</p>
 		<p>
-			<a href="/index.php/User/change" class="btn btn-warning">修改密码</a> <a href="/index.php/User/logout" class="btn btn-info">离开</a> <a class="btn btn-default" href="/index.php/Talk/talklist">会话列表</a>
+			<button class="btn btn-warning"  data-toggle="modal" data-target="#change">修改密码</button> <a href="/index.php/User/logout" class="btn btn-info">离开</a> <a class="btn btn-default" href="/index.php/Talk/talklist">会话列表</a>
 		</p>
 		<p>
 			<span class="text-warning"> 加入时间：<cite>{$info['time']|date="Y-m-d",###}</cite></span>
@@ -160,3 +160,32 @@
 	})
 
 </script>
+<div class="modal fade" id="change" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+      	<h4 class="modal-title" >修改密码</h4>
+      </div>
+      <div class="modal-body">
+      	<form method="post" action="/index.php/User/change">
+      	<div class="input-group" style="margin:10px">
+      		<span class="input-group-addon">
+      			旧密码
+      		</span>
+      		<input type="password" class="form-control" name="password">
+      	</div>
+      	<div class="input-group" style="margin:10px">
+      		<span class="input-group-addon">
+      			新密码
+      		</span>
+      		<input type="password" class="form-control" name="new">
+      	</div>
+      </div>
+      <div class="modal-footer">
+      	<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+      	<button class="btn btn-danger">修改</button>
+      	</form>
+      </div>
+    </div>
+  </div>
+</div>

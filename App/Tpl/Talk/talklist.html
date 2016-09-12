@@ -17,7 +17,7 @@
 	</div>
 	<div class="row" style="margin:5px;" >
 		<volist name="all" id="talk">
-			<div class="col-xs-3" style="height:80px;background-color:#FFFFFF;margin:10px;">
+			<div class="col-xs-3" style="height:80px;background-color:#FFFFFF;margin:10px;border-radius:3px">
 				<?php  $uid_one=D('Talk')->oppo($talk['tid'])  ?>
 				<div class="col-xs-4">
 					<a href="/index.php/Talk/index/tid/{$talk['tid']}"><img src="{$uid_one|uidimage}" width="60px" style="margin:5px"></a>
