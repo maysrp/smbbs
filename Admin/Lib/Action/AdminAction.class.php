@@ -15,7 +15,7 @@
 		function login(){//进入后自动加载
 			$ed=$this->ADMIN->autologin();
 			if($ed){
-				$this->error($ed,"/admin.php/User/login");
+				$this->error($ed,"/index.php/User/login");
 			}
 		}
 

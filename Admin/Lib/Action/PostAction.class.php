@@ -15,7 +15,7 @@
 		}
         function delrepost(){
             $rid=$_GET['rid'];
-            D("Repost")->where("rid='".$rid."'")->delete();
+            D("Repost")->del($rid);
             //D('User')->postdec();
             header("Location:$_SERVER[HTTP_REFERER]");
 
