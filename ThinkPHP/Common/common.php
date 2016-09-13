@@ -832,6 +832,10 @@ function footer(){
     $site=M('Site')->find(1);
     echo $site['footer'];
 }
+function background(){
+     $site=M('Site')->find(1);
+    echo $site['background'];
+}
 function sign_button(){
     if(!$_SESSION['uid']){
         echo "<a href=\"/index.php/User/login\" class=\"btn btn-primary btn-sm\"  data-toggle=\"tooltip\" data-placement=\"bottom\" title=\"您还未登入！\">登入</a>";

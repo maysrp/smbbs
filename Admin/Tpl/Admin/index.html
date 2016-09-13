@@ -25,6 +25,26 @@
 		</table>
 	</div>
 </div>
+		<div class="row">
+		<div class="panel panel-info">
+			<div class="panel-heading"><h4>背景图片</h4></div>
+			<table class="table">
+				<tr>
+					<form action="/admin.php/Site/background" method="post">
+					<td>
+						<textarea class="form-control" id="background" name="background" style="height:100px">
+							{$background}
+						</textarea>
+					</td>
+					
+				</tr>
+				<tr>
+					<td><input type="submit" value="提交" class="btn btn-info"></td>
+				</tr>
+				</form>
+			</table>
+		</div>		
+	</div>
 </div>
 <div class="col-md-8 col-md-offset-1">
 	<div class="row">
@@ -86,7 +106,5 @@
 				</form>
 			</table>
 		</div>		
-
 	</div>
-
 </div>

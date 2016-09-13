@@ -13,6 +13,19 @@
 			}
 
 		}
+		function background(){
+			if($_POST){
+				$x=M('Site')->where("site=1")->setField("background",$_POST['background']);
+				if($x){
+					$this->success("修改成功");
+				}else{
+					$this->error("ERROR!");
+				}
+			}else{
+				$this->error("ERROR!");
+			}
+
+		}
 
 
 

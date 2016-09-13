@@ -9,6 +9,7 @@
 		function index(){
 			$site=M("Site")->find(1);
 			$this->assign("site",$site['footer']);
+			$this->assign("background",$site['background']);
 			$this->display();
 
 		}
