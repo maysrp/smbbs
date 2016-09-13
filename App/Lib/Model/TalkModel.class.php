@@ -31,7 +31,6 @@
 		function create_talk($uid,$text){
 			$add['suid']=$_SESSION['uid'];
 			$add['time']=time();
-			var_dump($add);
 			if(D('User')->verify($uid)){
 				$add['uid']=$uid;
 				$info['suid']=$add['suid'];
@@ -60,6 +59,12 @@
 			$save['status']=$_SESSION['uid'];
 			$save['retime']=$time;
 			$this->save($save);
+			$uid=$this->oppo($tid);
+			$info_remind['xid']=$tid;
+			$info_remind['type']="talk";
+			$info_remind['uid']=$uid;
+			$info_remind['lc']=0;
+			D('Remind')->remind($info_remind);
 		}
 		function found_talk($uid){
 			$uid_2=$_SESSION['uid'];
@@ -78,12 +83,23 @@
 				$info=$this->info($tid);
 				if($text){
 					$this->addone($tid,$text);
+					$info_remind['xid']=$tid;
+					$info_remind['type']="talk";
+					$info_remind['uid']=$uid;
+					$info_remind['lc']=0;
+					D('Remind')->remind($info_remind);
 				}else{
 					return $info;
 				}
 			}else{
 				if($text){
 					$this->create_talk($uid,$text);
+					$tid=$this->found_talk($uid);
+					$info_remind['xid']=$tid;
+					$info_remind['type']="talk";
+					$info_remind['uid']=$uid;
+					$info_remind['lc']=0;
+					D('Remind')->remind($info_remind);
 				}else{
 					//
 				}
@@ -106,5 +122,11 @@
 			$all=$this->mytalk();
 			$talk=array_slice($all, 0,10);
 			return $talk;
+		}
+		function readed($tid){
+			$info=$this->verify($tid);
+			if ($info['status']!=$_SESSION['uid'] && $info['status']!=0 ) {
+				$this->where("tid='".$tid."'")->setField("status",0);	
+			}
 		}
 	}

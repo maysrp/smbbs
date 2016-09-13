@@ -6,8 +6,8 @@
 			}
 			$in['uid']=$info['uid'];//接收消息的人
 			$in['time']=time();
-			$in['type']=$info['type'];
-			$in['xid']=$info['xid'];
+			$in['type']=$info['type'];//talk
+			$in['xid']=$info['xid'];//tid
 			$in['sid']=$_SESSION['uid'];
 			$in['lc']=$info['lc'];
 			if($in['type']=="post"){
@@ -17,6 +17,9 @@
 				$reinfo=D('Repost')->find($in['xid']);
 				$title=D('Post')->find($reinfo['pid']);
 				$text=uidname($in['sid'])."在主题《".$title['title']."》中回复了您的回复;<span class=\"text-warning\">第".$in['lc']."楼</span>";
+			}elseif ($in['type']=="talk") {
+				//$in['uid']=D('Talk')->oppo($in['xid']);//接受者
+				$text=uidname($in['sid'])."给您发送了一个消息";
 			}
 			$eid=$this->add($in);
 			$text="<a href=/index.php/Remind/read?eid=".$eid.">".$text."</a>";
@@ -37,6 +40,9 @@
 						}
 					}elseif($info['type']=='repost'){
 						return "./index.php/Index/rere?rid=".$info['xid'];
+					}elseif($info['type']=='talk'){
+						return "./index.php/Talk/index?tid=".$info['xid'];
+						//return "./index.php/Index/rere?rid=".$info['xid'];
 					}
 
 					//return $info;

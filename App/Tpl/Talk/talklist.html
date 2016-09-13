@@ -17,17 +17,33 @@
 	</div>
 	<div class="row" style="margin:5px;" >
 		<volist name="all" id="talk">
-			<div class="col-xs-3" style="height:80px;background-color:#FFFFFF;margin:10px;border-radius:3px">
-				<?php  $uid_one=D('Talk')->oppo($talk['tid'])  ?>
-				<div class="col-xs-4">
-					<a href="/index.php/Talk/index/tid/{$talk['tid']}"><img src="{$uid_one|uidimage}" width="60px" style="margin:5px"></a>
-				</div>
-				<div class="col-xs-7">
-					<p>{$uid_one|level}</p>
-					<p><a href="/index.php/Talk/index/tid/{$talk['tid']}"><span class="glyphicon glyphicon-comment
+			<if condition="($talk['status'] neq $_SESSION['uid']) AND ($talk['status'] neq 0)">
+				<div class="col-xs-3 bg-warning" style="height:80px;margin:10px;border-radius:3px">
+					<?php  $uid_one=D('Talk')->oppo($talk['tid'])  ?>
+					<div class="col-xs-4">
+						<a href="/index.php/Talk/index/tid/{$talk['tid']}"><img src="{$uid_one|uidimage}" width="60px" style="margin:5px"></a>
+					</div>
+					<div class="col-xs-7">
+						<p>{$uid_one|level}</p>
+						<p><a href="/index.php/Talk/index/tid/{$talk['tid']}"><span class="glyphicon glyphicon-comment
 "></span></a></p>
+					</div>
 				</div>
-			</div>
+			<else />
+				<div class="col-xs-3" style="height:80px;background-color:#FFFFFF;margin:10px;border-radius:3px">
+					<?php  $uid_one=D('Talk')->oppo($talk['tid'])  ?>
+					<div class="col-xs-4">
+						<a href="/index.php/Talk/index/tid/{$talk['tid']}"><img src="{$uid_one|uidimage}" width="60px" style="margin:5px"></a>
+					</div>
+					<div class="col-xs-7">
+						<p>{$uid_one|level}</p>
+						<p><a href="/index.php/Talk/index/tid/{$talk['tid']}"><span class="glyphicon glyphicon-comment
+"></span></a></p>
+					</div>
+				</div>
+
+
+			</if>
 		</volist>
 	</div>
 

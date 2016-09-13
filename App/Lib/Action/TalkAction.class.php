@@ -23,6 +23,7 @@
 					$all=D('Talk')->mytalk_10();
 					$this->assign("all",$all);
 					$this->assign("tid",$tid);
+					D('Talk')->readed($tid);
 					$this->display();
 					return;
 				
@@ -39,6 +40,7 @@
 				$this->assign("uid",$uid);
 				$this->assign("talk",$re);
 				$this->assign("tid",$tid);
+				D('Talk')->readed($tid);
 				$this->display();
 			}else{
 				$this->assign("uid",$uid);
