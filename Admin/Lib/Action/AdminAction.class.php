@@ -17,6 +17,7 @@
 			$ed=$this->ADMIN->autologin();
 			if($ed){
 				$this->error($ed,"/index.php/User/login");
+				return;
 			}
 		}
 

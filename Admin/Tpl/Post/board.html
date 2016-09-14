@@ -3,7 +3,7 @@
 	<?php $board=allboard() ?>
 	<h3>
 		<volist name="board" id="bo">
-			<a href="/admin.php/Post/board?bid={$bo['bid']}" class="btn btn-default">{$bo['bid']|bidname}</a>
+			<a href="/admin.php/Post/board?bid={$bo['bid']}" class="btn btn-default">{$bo['name']}</a>
 		</volist>
 	</h3>
 	<a href="/admin.php/Admin" class="btn btn-info">面板</a>
@@ -19,9 +19,10 @@
 		<volist name="post" id="p">
 			<tr>
 				<td>
-					<a href="/admin.php/Post/post?pid={$p[pid]}">{$p['title']}</a>
+					<a href="/admin.php/Post/post?pid={$p[pid]}" id="p_{$i}" pid="{$p[pid]}" >{$p['title']}</a>
 				</td>
 				<td class="text-right">
+					<button class="btn btn-default change_button" data-toggle="modal" data-target="#change_div" AM="{$i}"><span class="glyphicon glyphicon-export">转移</span></button>
 					<a href="/admin.php/Post/delpost?pid={$p['pid']}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
 					{$p['time']|date="Y-m-d H:i",###} |
 					<span class="label label-default"> {$p['view']}/{$p['num']}
@@ -30,5 +31,38 @@
 			</tr>
 		</volist>
 	</table>
+</div>
+<script type="text/javascript">
+	$(".change_button").click(function(){
+		var p=$(this).attr("AM");
+		var title=$("#p_"+p).text();
+		var pid=$("#p_"+p).attr("pid");
+		$(".select_title").text(title);
+		$("#select_pid").val(pid);
+	})
+</script>
 
+<div class="modal fade" id="change_div">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				将把主题"<span class="select_title text-warning" ></span>"转移到板块：
+			</div>
+			<div class="modal-body">
+				<form action="/admin.php/Post/change" method="post">
+					<input type="text" class="hidden"  name="pid" id="select_pid" value="">
+					<select class="form-control" name="board">
+						<volist name="board" id="board_select">
+							<option value="{$board_select['bid']}">{$board_select['name']}</option>
+						</volist>
+					</select>
+
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-info" data-dismiss="modal">取消</button>
+				<button class="btn btn-primary">确定</button>
+				</form>
+			</div>
+		</div>
+	</div>
 </div>

@@ -4,7 +4,7 @@
 		function __construct(){
 			parent::__construct();
 			$this->POST=D('Post');
-			D('Admin')->autologin();
+			A('Admin')->login();
 		}
 		function delpost(){//删除
 			$pid=$_GET['pid'];
@@ -53,4 +53,16 @@
         $this->assign("post",$post);
         $this->display();
     }
-	}
+    function change(){
+        if($_POST){
+            $pid=(int)$_POST['pid'];
+            $board=(int)$_POST['board'];
+            $x=D('Post')->move($pid,$board);
+            if ($x) {
+                $this->success("移动成功！");
+            }
+        }else{
+            $this->error();
+        }
+    }
+}

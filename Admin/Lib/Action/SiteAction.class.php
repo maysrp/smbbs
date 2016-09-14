@@ -1,5 +1,9 @@
 <?php
 	class SiteAction extends Action{
+		function __construct(){
+			parent::__construct();
+			A('Admin')->login();
+		}
 		function footer(){
 			if($_POST){
 				$x=M('Site')->where("site=1")->setField("footer",$_POST['footer']);

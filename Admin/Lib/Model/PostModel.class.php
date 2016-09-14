@@ -42,4 +42,12 @@
 			}
 
 		}
+		function move($pid,$board){
+			$p=$this->exist($pid);
+			$b=D('Board')->exist($board);
+			if($p&&$b){
+				$re=$this->where("pid='".$pid."'")->setField("bid",$board);
+				return $re;
+			}
+		}
 	}

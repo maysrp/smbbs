@@ -5,7 +5,7 @@
 			parent::__construct();
 			$this->USER=D('User');
 			$this->USER->auth();
-			D('Admin')->autologin();
+			A('Admin')->login();
 		}
 		function index(){
 			if(!$_SESSION['uid']){
