@@ -60,6 +60,8 @@
             $x=D('Post')->move($pid,$board);
             if ($x) {
                 $this->success("移动成功！");
+            }else{
+                $this->error("转移失败");
             }
         }else{
             $this->error();

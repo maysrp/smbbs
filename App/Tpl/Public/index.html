@@ -36,11 +36,13 @@
 
 
 		{__CONTENT__}
-
 	</div>
+
 	<div class="container">
 
-		<p> <small class="muted">Powered by <a href="http://git.oschina.net/supercell/smbbs">smbbs</a></small></p>
+		<p> 
+			<small class="muted">Powered by <a href="http://git.oschina.net/supercell/smbbs">smbbs</a> 耗时<?php echo round(microtime()-$_SESSION['time'],4)?>ms</small>
+		</p>
 	</div>
 </body>
 <script type="text/javascript"> 
@@ -50,4 +52,7 @@
 	if(!n_id&&!nav_post){
 		$("#n_home").addClass("active");	 
 	}	 
+</script>
+<script type="text/javascript">
+<?php echo js() ?>
 </script>

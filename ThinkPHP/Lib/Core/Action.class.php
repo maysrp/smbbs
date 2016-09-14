@@ -44,6 +44,7 @@ abstract class Action {
      * @access public
      */
     public function __construct() {
+        $_SESSION['time']=microtime();
         tag('action_begin',$this->config);
         //实例化视图类
         $this->view     = Think::instance('View');           

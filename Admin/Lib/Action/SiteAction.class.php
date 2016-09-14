@@ -30,6 +30,19 @@
 			}
 
 		}
+		function js(){
+			if($_POST){
+				$x=M('Site')->where("site=1")->setField("js",$_POST['js']);
+				if($x){
+					$this->success("修改成功");
+				}else{
+					$this->error("ERROR!");
+				}
+			}else{
+				$this->error("ERROR!");
+			}
+
+		}
 
 
 
