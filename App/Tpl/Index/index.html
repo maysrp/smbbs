@@ -1,5 +1,10 @@
 
-
+<style type="text/css">
+	img{
+		max-height: 120px;
+		max-width: 120px;
+	}
+</style>
 <div class="col-md-8" style="background-color:#FFFFFF;border-radius:8px;padding:30px;margin:10px">
 <div class="row">
 	<div class="col-md-4 col-xs-12">
@@ -12,10 +17,11 @@
 	<table class="table table-striped">
 		<tr class="info">
 			<th>主题</th>
+			<th></th>
 			<th class="text-right"></th>
 		</tr>
 		<volist name="post" id="p">
-			<tr>
+			<tr class="move_on" value="image_{$p['pid']}">
 				<td >
 					<p><small ><a href="/index.php/Index/board?bid={$p['bid']}" class="text-warning">[{$p['bid']|bidname}]</a></small><span><a class="post_link" href="/index.php/Index/post/pid/{$p['pid']}">{$p['title']}</a></span></p>
 					<p><small class="text-muted"><a href="/index.php/Profile/index/uid/{$p['uid']}" class="text-info">{$p['uid']|uidname}</a> 发布于 {$p['time']|date="Y-m-d H:i",###}</small></p>
@@ -28,6 +34,9 @@
 							<p>{$p['uid']|level}</p>
 						</div>
 				</div>
+				<td>
+					<span style="display:none" id="image_{$p['pid']}">{$p['image']|postimage}</span>
+				</td>
 				<td class="text-right user_info"  AM="{$p[pid]}">
 					<small class="text-muted">
 						<span class="glyphicon glyphicon-comment"></span>{$p['num']} /
@@ -87,6 +96,13 @@
 	$(".user_info").click(function(){
 		var am=$(this).attr("AM");
 		window.location.href="/index.php/Index/post/pid/"+am;
-
+	})
+	$(".move_on").mouseover(function(){
+		var image=$(this).attr("value");
+		$("#"+image).css("display","inline");
+	})
+		$(".move_on").mouseleave(function(){
+		var image=$(this).attr("value");
+		$("#"+image).css("display","none");
 	})
 </script>
